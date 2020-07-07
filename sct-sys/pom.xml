@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.vg.sct</groupId>
-    <artifactId>user</artifactId>
+    <artifactId>sys</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sct-user</name>
+    <name>sct-sys</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
