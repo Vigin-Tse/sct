@@ -17,6 +17,7 @@
     <description>Demo project for Spring Boot</description>
 
     <dependencies>
+        <!-- 服务提供者,Eureka服务端 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>

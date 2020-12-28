@@ -1,13 +1,13 @@
-package com.vg.sct.common;
+package com.vg.sct.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SctCommonApplication {
+public class SctAuthApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SctCommonApplication.class, args);
+        SpringApplication.run(SctAuthApplication.class, args);
     }
 
 }

@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: sit #运行环境
+
+server:
+  port: 8000 #服务端口
+
+eureka:
+  client:
+    register-with-eureka: false   #是否去eureka拉去数据
+    fetch-registry: false         #是否去eureka注册自己
+    service-url:
+      defaultZone: http://localhost:8000/eureka
