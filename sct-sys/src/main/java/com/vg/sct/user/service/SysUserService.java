@@ -9,5 +9,5 @@ import com.vg.sct.user.dao.model.SysUserModel;
  */
 public interface SysUserService {
 
-    SysUserModel getOne(Integer id);
+
 }

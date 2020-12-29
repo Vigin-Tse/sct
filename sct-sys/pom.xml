@@ -16,6 +16,12 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>com.vg</groupId>
+            <artifactId>sct-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
         <!-- 一个服务提供者，其实它是一个Eureka客户端 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
