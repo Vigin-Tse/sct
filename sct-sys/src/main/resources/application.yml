@@ -42,9 +42,9 @@ spring:
 
 #服务名、端口配置
 server:
-  port: 8001
+  port: 5001
   servlet:
-    context-path : /sys
+    context-path : /sct-sys
 
 eureka:
   client:
