@@ -1,4 +1,4 @@
-package com.vg.sct.user.dao.model;
+package com.vg.sct.user.domain.model;
 
 import lombok.Data;
 
@@ -36,6 +36,9 @@ public class SysUserModel {
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "IS_ACTIVE")
+    private Boolean isActive;
 
     @Column(name = "creator")
     private Integer creator;

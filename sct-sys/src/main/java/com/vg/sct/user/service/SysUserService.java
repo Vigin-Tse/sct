@@ -1,6 +1,6 @@
 package com.vg.sct.user.service;
 
-import com.vg.sct.user.dao.model.SysUserModel;
+import com.vg.sct.user.domain.vo.UserLoginInfoVo;
 
 /**
  * @Description
@@ -9,5 +9,5 @@ import com.vg.sct.user.dao.model.SysUserModel;
  */
 public interface SysUserService {
 
-
+    UserLoginInfoVo loginByUserNameAndPsw(String userName, String pwd);
 }

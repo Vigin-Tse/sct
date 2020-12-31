@@ -1,5 +1,6 @@
 package com.vg.sct.common.http;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,6 +8,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class HttpResponse<T> implements Serializable {
 
     private static final long serialVersionUID = -284719732991678911L;

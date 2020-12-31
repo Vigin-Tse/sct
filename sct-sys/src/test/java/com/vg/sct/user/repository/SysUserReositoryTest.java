@@ -1,7 +1,7 @@
 package com.vg.sct.user.repository;
 
 import com.alibaba.fastjson.JSON;
-import com.vg.sct.user.dao.model.SysUserModel;
+import com.vg.sct.user.domain.model.SysUserModel;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

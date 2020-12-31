@@ -1,8 +1,8 @@
 #服务名、端口配置
 server:
   port: 5000
-#  servlet:
-#    context-path : /sct-gateway
+  servlet:
+    context-path : /sct-gateway
 
 spring:
   application:
@@ -10,20 +10,17 @@ spring:
   cloud:
     gateway:
       discovery:
-#        locator:
+        locator:
           # enabled: xxx 开启根据微服务名称自动转发,与服务发现组件进行结合，通过 serviceId(必须设置成大写) 转发到具体的服务实例。
           #默认为false，设为true便开启通过服务中心的自动根据 serviceId 创建路由的功能(微服务应用名默认大写访问)。
           #路由访问方式：http://Gateway_HOST:Gateway_PORT/大写的serviceId/**，其中微服务应用名默认大写访问。
-#          enabled: true
-#          lower-case-service-id: true  #微服务名称以小写形式呈现
+          enabled: true
+          lower-case-service-id: true  #微服务名称以小写形式呈现
       routes:
         - id: sct-sys #路由的ID
-          uri: lb://sct-sys #匹配路由的转发地址对应服务名：lb://{spring.application.name}
+          uri: lb://sct-sys-application #匹配路由的转发地址
           predicates: #配置该路由的断言，通过PredicateDefinition类进行接收配置。
-            - Path=/sct-sys/**
-#          filters: # 去掉部分URL路径
-#            - StripPrefix=1
-
+            - Path: /sct-sys/**
 
 eureka:
   client:
