@@ -1,10 +1,8 @@
 package com.vg.sct.user.service.impl;
 
-import com.netflix.discovery.converters.Auto;
 import com.vg.sct.common.exception.AuthException;
-import com.vg.sct.common.exception.BusinessException;
 import com.vg.sct.common.utils.MD5Utils;
-import com.vg.sct.user.domain.model.SysUserModel;
+import com.vg.sct.user.domain.po.SysUserPo;
 import com.vg.sct.user.domain.vo.UserLoginInfoVo;
 import com.vg.sct.user.repository.SysUserRepository;
 import com.vg.sct.user.service.SysUserService;
@@ -27,12 +25,12 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public UserLoginInfoVo loginByUserNameAndPsw(String userName, String pwd) {
-        List<SysUserModel> userList = this.userRepository.findByUserNameAndIsActiveTrue(userName);
+        List<SysUserPo> userList = this.userRepository.findByUserNameAndIsActiveTrue(userName);
         if (CollectionUtils.isEmpty(userList)){
             throw new AuthException("用户名不存在，或密码不正确");
         }
 
-        SysUserModel user = userList.get(0);
+        SysUserPo user = userList.get(0);
         String oldPwd = user.getPassword();
 
         if(!MD5Utils.comparison(pwd, oldPwd)){

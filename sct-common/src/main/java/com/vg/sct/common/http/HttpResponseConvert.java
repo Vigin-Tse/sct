@@ -8,7 +8,7 @@ package com.vg.sct.common.http;
 public class HttpResponseConvert {
 
 
-    public static <T> HttpResponse success(String msg){
+    public static HttpResponse success(String msg){
         return new HttpResponse(HttpResponseEnum.SUCCESS.getCode(), msg);
     }
 
@@ -24,11 +24,11 @@ public class HttpResponseConvert {
         return new HttpResponse(code, msg, data);
     }
 
-    public static <T> HttpResponse failure(String msg){
+    public static HttpResponse failure(String msg){
         return new HttpResponse(HttpResponseEnum.ERROR.getCode(), msg);
     }
 
-    public static <T> HttpResponse failure(String code, String msg){
+    public static HttpResponse failure(String code, String msg){
         return new HttpResponse(code, msg);
     }
 }

@@ -1,7 +1,7 @@
 package com.vg.sct.user.repository;
 
 import com.alibaba.fastjson.JSON;
-import com.vg.sct.user.domain.model.SysUserModel;
+import com.vg.sct.user.domain.po.SysUserPo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,8 +21,8 @@ public class SysUserReositoryTest {
 
     @Test
     public void getUserByIdTest(){
-        Optional<SysUserModel> oUser = this.sysUserRepository.findById(1);
-        SysUserModel user = oUser.get();
+        Optional<SysUserPo> oUser = this.sysUserRepository.findById(1);
+        SysUserPo user = oUser.get();
         System.out.println(JSON.toJSONString(user));
     }
 }
