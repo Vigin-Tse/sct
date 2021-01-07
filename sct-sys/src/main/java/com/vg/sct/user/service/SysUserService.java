@@ -10,4 +10,6 @@ import com.vg.sct.user.domain.vo.UserLoginInfoVo;
 public interface SysUserService {
 
     UserLoginInfoVo loginByUserNameAndPsw(String userName, String pwd);
+
+
 }

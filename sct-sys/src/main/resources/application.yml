@@ -54,5 +54,5 @@ eureka:
 #日志
 logging:
   level:
-    root: debug
+    root: info
     org.hibernate.type.descriptor.sql.BasicBinder: trace

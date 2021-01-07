@@ -8,4 +8,5 @@ import java.util.List;
 public interface SysUserRepository extends JpaRepository<SysUserPo, Integer> {
 
     List<SysUserPo> findByUserNameAndIsActiveTrue(String userName);
+
 }

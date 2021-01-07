@@ -37,7 +37,7 @@ public class SysUserPo {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "IS_ACTIVE")
+    @Column(name = "is_active")
     private Boolean isActive;
 
     @Column(name = "creator")

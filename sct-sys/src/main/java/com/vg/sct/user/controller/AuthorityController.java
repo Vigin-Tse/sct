@@ -24,7 +24,7 @@ public class AuthorityController {
 
     @RequestMapping("/user/login")
     @PostMapping
-    public HttpResponse userlogin(@RequestBody UserPsLoginRquest request){
+    public HttpResponse userLogin(@RequestBody UserPsLoginRquest request){
         return HttpResponseConvert.success(this.userService.loginByUserNameAndPsw(request.getUserName(), request.getPassword()));
     }
 }
