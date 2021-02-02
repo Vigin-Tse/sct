@@ -17,6 +17,8 @@
 
     <properties>
         <hutool.version>5.3.7</hutool.version>
+        <jjwt.vserion>0.9.1</jjwt.vserion>
+        <persistence.vserion>2.2.3</persistence.vserion>
     </properties>
 
     <dependencies>
@@ -33,7 +35,14 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.9.1</version>
+            <version>${jjwt.vserion}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api -->
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>${persistence.vserion}</version>
         </dependency>
 
 

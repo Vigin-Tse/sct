@@ -8,12 +8,17 @@ sct:
     port: 8089
     password: admin123
 
-#数据库连接配置
+#服务名、端口配置
+server:
+  port: 5001
+#  servlet:
+#    context-path : /sct-auth
+
 spring:
   profiles:
     active: sit #运行环境
   application:
-    name: sct-sys
+    name: sct-auth
   datasource:
     username: ${sct.db.username}
     password: ${sct.db.password}
@@ -54,12 +59,6 @@ spring:
         max-wait: 6000ms #等待时间
         max-idle: 8 #最大空闲数
         min-idle: 3 #初始化最小数
-
-#服务名、端口配置
-server:
-  port: 5002
-  servlet:
-    context-path : /sct-sys
 
 eureka:
   client:

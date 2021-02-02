@@ -23,6 +23,10 @@ spring:
             - Path=/sct-sys/**
 #          filters: # 去掉部分URL路径
 #            - StripPrefix=1
+        - id: sct-auth
+          uri: lb://sct-auth
+          predicates:
+            - Path=/sct-auth/**
 
 
 eureka:

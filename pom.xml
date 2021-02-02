@@ -16,6 +16,7 @@
         <module>sct-order</module>
         <module>sct-product</module>
         <module>sct-sys</module>
+        <module>sct-sys-parent/sct-sys-api</module>
         <module>sct-auth</module>
         <module>sct-gateway</module>
     </modules>

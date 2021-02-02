@@ -1,6 +1,6 @@
 package com.vg.sct.common.utils;
 
-import com.vg.sct.common.domain.bo.CurrentUserDetails;
+import com.vg.sct.common.domain.CurrentUserDetails;
 import com.vg.sct.common.exception.AuthException;
 import io.jsonwebtoken.*;
 
@@ -54,7 +54,7 @@ public class JwtUtils {
                 .setIssuer(issuer)                      // issuer：jwt签发人
 //                .setSubject(subject)                  // sub(Subject)：代表这个JWT的主体，即它的所有人，这个是一个json格式的字符串，可以存放什么userid，roldid之类的，作为什么用户的唯一标志。
                 .setExpiration(expDate)
-                .signWith(signatureAlgorithm, SECRET_KEY); // 设置签名使用的签名算法和签名使用的秘钥
+                .signWith(signatureAlgorithm, MD5Utils.encodeMd5(SECRET_KEY)); // 设置签名使用的签名算法和签名使用的秘钥
 
         return builder.compact();
     }
@@ -78,6 +78,14 @@ public class JwtUtils {
         }
     }
 
+    /**
+     * 返回加密秘钥
+     * @return
+     */
+    public static String getSecretKey(){
+        return MD5Utils.encodeMd5(SECRET_KEY);
+    }
+
     public static void main(String[] args){
         CurrentUserDetails user = new CurrentUserDetails();
         user.setId(1);
@@ -87,7 +95,8 @@ public class JwtUtils {
 
 //        System.out.println(token);
 
-        String token = "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzY2FydF92aWNreSIsInVzZXJOYW1lIjoidmlja3kiLCJleHAiOjE2MTAwMDkwNDIsInVzZXJJZCI6MSwiaWF0IjoxNjEwMDA4NzQzLCJqdGkiOiIwMjE3ODUxMS0xOTcxLTRlNTAtYjFmNS05OWEyZGQ4MmM1NDcifQ.2WgqXtdsEQDeaq2ziklZ-AioWpJEk6FUsxu-PordHoI";
+        String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTIyNTA5MDEsInVzZXJfbmFtZSI6Imxlbm8iLCJqdGkiOiJiYTAyZmY1MC02ODRmLTQ0ZTYtODE4NC05MzdkNGNlZDBlZGYiLCJjbGllbnRfaWQiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdfQ.d5MGmL0QzDAxc69yhTRXB6eUeJmKsHfpFInb3_mVbwc";
+
         Claims claims = JwtUtils.parseToken(token);
 
         System.out.println(claims.get("userId"));
