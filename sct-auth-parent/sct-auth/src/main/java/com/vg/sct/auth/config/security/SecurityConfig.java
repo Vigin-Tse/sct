@@ -10,6 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 /**
  * @description: SpringSecurity配置
@@ -54,12 +57,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         httpSecurity
                 .csrf().disable()  //由于使用的是JWT，我们这里不需要csrf
+//                .cors(Customizer.withDefaults()) // by default uses a Bean by the name of corsConfigurationSource(官方说明，使下面配置的bean生效)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)  //基于token，所以不需要session
                 .and().authorizeRequests()
                 .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()  //所有endpoint，permitAll() 无条件允许访问
-//                .antMatchers("/user/**").permitAll()
                 .anyRequest().authenticated();  //除上面外的所有请求全部需要鉴权认证
 
+    }
+
+    /**
+     * 跨域配置
+     * @return
+     */
+//    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("*");//修改为添加而不是设置，* 最好改为实际的需要，我这是非生产配置，所以粗暴了一点
+        configuration.addAllowedMethod("*");//修改为添加而不是设置
+        configuration.addAllowedHeader("*");//这里很重要，起码需要允许 Access-Control-Allow-Origin
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
     /**
