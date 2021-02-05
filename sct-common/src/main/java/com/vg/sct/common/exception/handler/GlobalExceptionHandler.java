@@ -5,7 +5,6 @@ import com.vg.sct.common.exception.BusinessException;
 import com.vg.sct.common.http.HttpResponse;
 import com.vg.sct.common.http.HttpResponseConvert;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @description: 全局异常处理器
@@ -25,6 +24,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BusinessException.class)
     public HttpResponse businessExceptionHandler(BusinessException e){
+        return HttpResponseConvert.failure(e.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public HttpResponse exceptionHandler(Exception e){
         return HttpResponseConvert.failure(e.getMessage());
     }
 }

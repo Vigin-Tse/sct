@@ -13,11 +13,10 @@
     <modules>
         <module>sct-eureka</module>
         <module>sct-common</module>
+        <module>sct-auth-parent</module>
+        <module>sct-sys-parent</module>
         <module>sct-order</module>
         <module>sct-product</module>
-        <module>sct-sys</module>
-        <module>sct-sys-parent/sct-sys-api</module>
-        <module>sct-auth</module>
         <module>sct-gateway</module>
     </modules>
 

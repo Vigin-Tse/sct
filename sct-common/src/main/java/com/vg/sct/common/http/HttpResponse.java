@@ -30,6 +30,8 @@ public class HttpResponse<T> implements Serializable {
      */
     private T data;
 
+    public HttpResponse(){}
+
     public HttpResponse(String code, String msg){
         this.code = code;
         this.msg = msg;
