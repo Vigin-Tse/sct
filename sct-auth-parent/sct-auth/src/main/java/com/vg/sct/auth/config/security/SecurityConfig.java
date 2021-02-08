@@ -8,7 +8,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -58,11 +57,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .csrf().disable()  //由于使用的是JWT，我们这里不需要csrf
 //                .cors(Customizer.withDefaults()) // by default uses a Bean by the name of corsConfigurationSource(官方说明，使下面配置的bean生效)
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)  //基于token，所以不需要session
-                .and().authorizeRequests()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)  //基于token，禁用session 默认授权页面将失效
+//                .and()
+                .authorizeRequests()
                 .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()  //所有endpoint，permitAll() 无条件允许访问
-                .anyRequest().authenticated();  //除上面外的所有请求全部需要鉴权认证
+                .anyRequest().authenticated() //除上面外的所有请求全部需要鉴权认证
+                .and()
+                .formLogin().permitAll();     //新增login form支持用户登录及授权
 
+//        httpSecurity.csrf()
+//                .disable()
+//                .authorizeRequests()
+//                .antMatchers("/oauth/**", "/login/**", "/logout/**").permitAll()
+//                .anyRequest()
+//                .authenticated()
+//                .and()
+//                .formLogin()
+//                .permitAll();
     }
 
     /**

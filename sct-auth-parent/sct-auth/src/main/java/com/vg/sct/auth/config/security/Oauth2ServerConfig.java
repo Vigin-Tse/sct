@@ -62,6 +62,8 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
                 .accessTokenValiditySeconds(3600)       //配置访问token的有效期
                 .refreshTokenValiditySeconds(864000)    //配置刷新token的有效期
                 .scopes("all")  //配置申请的权限范围
+                .redirectUris("http://www.baidu.com")   //配置redirect_uri，用于授权成功后带授权码跳转
+//                .autoApprove(true)                      //登录后绕过批准询问（confirm_access）
                 .authorizedGrantTypes("authorization_code","password", "refresh_token"); //配置grant_type，表示授权类型
     }
 
@@ -94,7 +96,8 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(AuthorizationServerSecurityConfigurer serviceSecurity){
 
-        //开启支持通过表单方式提交client_id和client_secret,否则请求时以basic auth方式,头信息传递Authorization发送请求
-        serviceSecurity.allowFormAuthenticationForClients();
+        serviceSecurity.allowFormAuthenticationForClients();//开启支持通过表单方式提交client_id和client_secret,否则请求时以basic auth方式,头信息传递Authorization发送请求
+        serviceSecurity.checkTokenAccess("permitAll()");  //允许校验token
+        serviceSecurity.tokenKeyAccess("permitAll()");    //允许获取验签公钥
     }
 }
