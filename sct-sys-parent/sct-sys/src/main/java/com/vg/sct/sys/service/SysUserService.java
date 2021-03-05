@@ -1,6 +1,7 @@
 package com.vg.sct.sys.service;
 
 import com.vg.sct.common.http.HttpResponse;
+import com.vg.sct.sys.domain.vo.UserInfoVo;
 
 /**
  * @Description
@@ -11,5 +12,5 @@ public interface SysUserService {
 
     HttpResponse loginByUserNameAndPsw(String userName, String pwd);
 
-
+    UserInfoVo getUserInfo(Integer userId);
 }

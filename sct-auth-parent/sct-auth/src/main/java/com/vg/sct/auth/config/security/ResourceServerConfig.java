@@ -17,10 +17,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .authorizeRequests() //配置需要用户认证（登录）的资源
-                   .antMatchers("/rs2/**").authenticated()
-//                   .antMatchers("/login/**").permitAll()
-//                   .anyRequest().authenticated()
+                .authorizeRequests()
+                   .anyRequest().authenticated()
                 .and()
                 .requestMatchers()  //配置需要（token）保护的资源
 //                   .anyRequest()  //拦截所有请求（需要携带登录凭证（token））

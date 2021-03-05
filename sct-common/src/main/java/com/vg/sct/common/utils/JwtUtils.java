@@ -66,9 +66,13 @@ public class JwtUtils {
      */
     public static Claims parseToken(String token){
 
+        String publicKey = "-----BEGIN PUBLIC KEY-----\n" +
+                "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApFJNBZMpLkUcOaZHZMpU8VVwV5oFmD+l+gggYDtL5zaYCS11n66KvADM1wlfbzeImafrATj1ixusXAlGg1rlu6VxhZ95R3SEvaFSGJfL3lRhymP6omj0ovfq/Fa8HqCQ0QWWpmsSMNlqTrDd2ZSsdYsjfFzfqxV4s6b5UuVypMxUKMa0ejNhaq6EAPJggxf8GvK/Csy24G0WE5XAQXQ2U4Pp8JHIyDTyNt0K0E9IwG4Bxp0pHjkWG99AlkPBsjgRfazVlk0W90fAbkLdBng0BGAR0daPcYvIyXrIM/6xt+sreyot+KcIBUvAeHmUIQs0S0DSnK9rUzW4jEHsldOIqwIDAQAB\n" +
+                "-----END PUBLIC KEY-----";
         try {
             Claims  claims = Jwts.parser()
                     .setSigningKey(SECRET_KEY)
+//                    .setSigningKey(publicKey)
                     .parseClaimsJws(token).getBody();
             return claims;
         }catch (ExpiredJwtException  eje){
@@ -95,8 +99,7 @@ public class JwtUtils {
 
 //        System.out.println(token);
 
-        String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTIyNTA5MDEsInVzZXJfbmFtZSI6Imxlbm8iLCJqdGkiOiJiYTAyZmY1MC02ODRmLTQ0ZTYtODE4NC05MzdkNGNlZDBlZGYiLCJjbGllbnRfaWQiOiJhZG1pbiIsInNjb3BlIjpbImFsbCJdfQ.d5MGmL0QzDAxc69yhTRXB6eUeJmKsHfpFInb3_mVbwc";
-
+        String token ="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxNDE2MDU0OCwianRpIjoiNDM3YzdkMzAtNmIyOS00MmU3LWFkZjMtZjAyMDgwZTVmMmUxIiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.XwQ30AHLqXBksDO6DuTI2gW7s5cJcu6kh_bhbopaJ7fx0GokIM4useJm7x_RlUmURLQdWUtSatsAeIGwyiXQRKI56raOx9NZt2kOmpiF70W8BhhK-3HbxM63oaAxKGvfQpw5SX3ntO2wqVXLiSHsV5YDaOgW_Ibeef9NUKzJDE6ac8vOaqmA4VExNJu25Pn4r4oC3lbi4ovhk43RH26hUKIMgaSj-F5L9m6EDCAFCi-ImzKRTbuEQRPFEYCE5w7t9hTJ9y1VVrYOHuUGnR7Nqsrcz4Gl_5lwOH3SeYFinDg6nsgr080stsXPkdQEiIzE6VCnY-dvivNiZ0oFcqTJWg";
         Claims claims = JwtUtils.parseToken(token);
 
         System.out.println(claims.get("userId"));

@@ -18,6 +18,7 @@
     <properties>
         <hutool.version>5.3.7</hutool.version>
         <jjwt.vserion>0.9.1</jjwt.vserion>
+        <numbus-jose-jwt.version>8.16</numbus-jose-jwt.version>
         <persistence.vserion>2.2.3</persistence.vserion>
     </properties>
 
@@ -36,6 +37,13 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>${jjwt.vserion}</version>
+        </dependency>
+
+        <!--JWT解析库-->
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>${numbus-jose-jwt.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api -->

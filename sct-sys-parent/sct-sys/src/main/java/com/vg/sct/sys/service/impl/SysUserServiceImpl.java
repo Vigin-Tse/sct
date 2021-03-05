@@ -1,9 +1,13 @@
 package com.vg.sct.sys.service.impl;
 
 import com.vg.sct.common.constants.ClientSecretEnum;
+import com.vg.sct.common.domain.po.sys.SysUserPo;
 import com.vg.sct.common.http.HttpResponse;
 import com.vg.sct.feign.auth.api.OauthFeignApi;
+import com.vg.sct.sys.domain.vo.UserInfoVo;
+import com.vg.sct.sys.repository.SysUserRepository;
 import com.vg.sct.sys.service.SysUserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +25,9 @@ public class SysUserServiceImpl implements SysUserService {
     @Autowired
     private OauthFeignApi oauthFeignApi;
 
+    @Autowired
+    private SysUserRepository userRepository;
+
     @Override
     public HttpResponse loginByUserNameAndPsw(String userName, String pwd) {
 
@@ -36,5 +43,14 @@ public class SysUserServiceImpl implements SysUserService {
 
         //远程调用统一认证中心获取凭证
         return oauthFeignApi.postAccessToken(loginParam);
+    }
+
+    @Override
+    public UserInfoVo getUserInfo(Integer userId) {
+        UserInfoVo userInfoVo = new UserInfoVo();
+
+        SysUserPo userPo = userRepository.getOne(userId);
+        BeanUtils.copyProperties(userPo, userInfoVo);
+        return userInfoVo;
     }
 }

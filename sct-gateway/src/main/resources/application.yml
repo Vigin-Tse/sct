@@ -7,7 +7,7 @@ eureka:
 #日志
 logging:
   level:
-    root: info
+    root: debug
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
 #服务名、端口配置
@@ -39,6 +39,11 @@ spring:
           uri: lb://sct-auth
           predicates:
             - Path=/sct-auth/**
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: "http://localhost:5001/sct-auth/rsa/publicKey"
 
 #配置不用鉴权的白名单
 security:
@@ -46,3 +51,4 @@ security:
     urls:
       - "/oauth/token"
       - "/user/login"
+      - "/rsa/publicKey"

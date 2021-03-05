@@ -72,6 +72,10 @@ logging:
     root: debug
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
+
+
+
+
 #management:
 #  endpoints:
 #    web:
