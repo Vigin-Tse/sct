@@ -1,5 +1,6 @@
 package com.vg.sct.auth.controller;
 
+import com.vg.sct.auth.config.component.CurrentUserHolder;
 import com.vg.sct.common.http.HttpResponse;
 import com.vg.sct.common.http.HttpResponseConvert;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class OauthController {
     @Autowired
     private TokenEndpoint tokenEndpoint;
 
+    @Autowired
+    private CurrentUserHolder currentUserHolder;
+
     /**
      * 统一登录获取token
      * @param principal
@@ -37,6 +41,8 @@ public class OauthController {
     @PostMapping("/token")
     public HttpResponse postAccessToken(Principal principal, @RequestParam  Map<String, String> param) throws HttpRequestMethodNotSupportedException {
         OAuth2AccessToken auth2AccessToken = this.tokenEndpoint.postAccessToken(principal, param).getBody();
+
+        currentUserHolder.getCurrentUser();
 
         //提取登录成功后用户信息集合
         Map<String, Object> additionalInfo = auth2AccessToken.getAdditionalInformation();

@@ -49,6 +49,7 @@ spring:
 security:
   permited:
     urls:
-      - "/oauth/token"
-      - "/user/login"
-      - "/rsa/publicKey"
+      - "/sct-auth/oauth/token"
+      - "/sct-auth/rsa/publicKey"
+      - "/sct-sys/user/login"
+

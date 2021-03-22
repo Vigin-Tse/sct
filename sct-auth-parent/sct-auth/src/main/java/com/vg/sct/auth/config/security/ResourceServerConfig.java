@@ -23,12 +23,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .requestMatchers()  //配置需要（token）保护的资源
 //                   .anyRequest()  //拦截所有请求（需要携带登录凭证（token））
                    .antMatchers("/rs/**")
+//                   .antMatchers("/rs2/**")
         ;
-
-
-//        httpSecurity.authorizeRequests()
-//                .anyRequest().authenticated()
-//                .and()
-//                .requestMatchers().antMatchers("/resource/**");//配置需要保护的资源路径
     }
 }

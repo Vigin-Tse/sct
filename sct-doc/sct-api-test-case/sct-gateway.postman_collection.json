@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "e8d6e608-749c-45ca-8133-cd4bfe749e8f",
+		"name": "sct-gateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "登录",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"suqianli\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/sct-sys/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"sct-sys",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "password模式获取token（body form）",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Access-Control-Allow-Origin",
+						"value": "*",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "leno",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "sct@2021",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "SCT_WEB",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/sct-auth/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"sct-auth",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取用户信息 /user/userinfo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxNDk0MDIwOSwianRpIjoiYzdlNWFkZDktMWExYS00ZGUzLTkyZDItOWVlN2IxNmQ4ZDg5IiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.VwgMdMI58lEylHV4szIfYyuzF8FGSA5CP0I_KqTApJTQ4Bjp_lq970Zf_2BZeyiExkBMlZZ_QbUn6FyDY-1alMKiMdhzGEqiSUjalbTtR4pTxgl1HMp5g1Hy0CeiRxRi2R4Gct4xmXfHHiiouN79ZFNOJyWy2SzyPf8_OOwXPpOqElkAa8AMM5yTSZNBT126g0jeedFkdTlKQ6IhDV9psnres0YHVp29tfMlG8lPnplIotRxLYuXkKLLRawgYEvdwM9V4WAD6NjczIkxvoqMvj61rgqO61KuwjasGUiYdjpgZIyJIatm_LR0eS05xFL1US-uD3dPJEGQCxitBNlx9AB",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "userId",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/sct-sys/user/userinfo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"sct-sys",
+						"user",
+						"userinfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取受保护资源",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxNDE2MDU0OCwianRpIjoiNDM3YzdkMzAtNmIyOS00MmU3LWFkZjMtZjAyMDgwZTVmMmUxIiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.XwQ30AHLqXBksDO6DuTI2gW7s5cJcu6kh_bhbopaJ7fx0GokIM4useJm7x_RlUmURLQdWUtSatsAeIGwyiXQRKI56raOx9NZt2kOmpiF70W8BhhK-3HbxM63oaAxKGvfQpw5SX3ntO2wqVXLiSHsV5YDaOgW_Ibeef9NUKzJDE6ac8vOaqmA4VExNJu25Pn4r4oC3lbi4ovhk43RH26hUKIMgaSj-F5L9m6EDCAFCi-ImzKRTbuEQRPFEYCE5w7t9hTJ9y1VVrYOHuUGnR7Nqsrcz4Gl_5lwOH3SeYFinDg6nsgr080stsXPkdQEiIzE6VCnY-dvivNiZ0oFcqTJWg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:5000/sct-auth/rs/demo",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"sct-auth",
+						"rs",
+						"demo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取受保护资源2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxMjc1MjQzNSwianRpIjoiNmQyYjE4YjUtMTU2Zi00MzQxLTg3ZmQtNzAzMWUzYzQzNjcxIiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.SCc2qyPdIhKTaftUSampIrF0EJPoAPGp-hl5igCwnO4",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:5000/sct-auth/rs2/demo",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"sct-auth",
+						"rs2",
+						"demo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取rsa公钥",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxNDE2MDU0OCwianRpIjoiNDM3YzdkMzAtNmIyOS00MmU3LWFkZjMtZjAyMDgwZTVmMmUxIiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.XwQ30AHLqXBksDO6DuTI2gW7s5cJcu6kh_bhbopaJ7fx0GokIM4useJm7x_RlUmURLQdWUtSatsAeIGwyiXQRKI56raOx9NZt2kOmpiF70W8BhhK-3HbxM63oaAxKGvfQpw5SX3ntO2wqVXLiSHsV5YDaOgW_Ibeef9NUKzJDE6ac8vOaqmA4VExNJu25Pn4r4oC3lbi4ovhk43RH26hUKIMgaSj-F5L9m6EDCAFCi-ImzKRTbuEQRPFEYCE5w7t9hTJ9y1VVrYOHuUGnR7Nqsrcz4Gl_5lwOH3SeYFinDg6nsgr080stsXPkdQEiIzE6VCnY-dvivNiZ0oFcqTJWg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:5000/sct-auth/rsa/publicKey",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"sct-auth",
+						"rsa",
+						"publicKey"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

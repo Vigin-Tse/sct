@@ -31,9 +31,11 @@ public class ResourceServiceConfig {
     @Autowired
     private IgnoreUrlsConfig ignoreUrlsConfig; //注入白名单配置列表
 
+    //无权访问自定义响应
     @Autowired
     private CustomServerAccessDeniedHandler serverAccessDeniedHandler;
 
+    //自定义处理JWT请求头过期或签名错误的结果
     @Autowired
     private CustomServerAuthenticationEntryPoint serverAuthenticationEntryPoint;
 
@@ -64,7 +66,7 @@ public class ResourceServiceConfig {
     }
 
     /**
-     * @linkhttps://blog.csdn.net/qq_24230139/article/details/105091273
+     * @link https://blog.csdn.net/qq_24230139/article/details/105091273
      * ServerHttpSecurity没有将jwt中authorities的负载部分当做Authentication
      * 需要把jwt的Claim中的authorities加入
      * 方案：重新定义ReactiveAuthenticationManager权限管理器，默认转换器JwtGrantedAuthoritiesConverter

@@ -1,5 +1,6 @@
 package com.vg.sct.gateway.config.authorization;
 
+import com.vg.sct.common.constants.AuthConstants;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authorization.AuthorizationDecision;
@@ -9,6 +10,7 @@ import org.springframework.security.web.server.authorization.AuthorizationContex
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
+import org.springframework.util.StringUtils;
 import reactor.core.publisher.Mono;
 
 /**
@@ -31,10 +33,13 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         }
 
         // 2. token为空拒绝访问
-//        String token = request.getHeaders().getFirst(AuthConstants.JWT_TOKEN_HEADER);
-//        if (StringUtils.isEmpty(token)){
-//            return Mono.just(new AuthorizationDecision(false));
-//        }
-        return null;
+        String token = request.getHeaders().getFirst(AuthConstants.JWT_TOKEN_HEADER);
+        if (StringUtils.isEmpty(token)){
+            return Mono.just(new AuthorizationDecision(false));
+        }
+
+        //todo...授权(验证角色权限)
+
+        return Mono.just(new AuthorizationDecision(true));
     }
 }
