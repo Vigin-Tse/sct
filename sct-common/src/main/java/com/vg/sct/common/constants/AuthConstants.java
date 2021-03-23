@@ -8,7 +8,7 @@ public interface AuthConstants {
     /**
      * jwt token 前缀
      */
-    String JWT_TOKEN_PREFIX = "Bearer";
+    String JWT_TOKEN_PREFIX = "Bearer ";
 
     /**
      * jwt token http头属性名

@@ -1,6 +1,6 @@
 package com.vg.sct.common.utils;
 
-import com.vg.sct.common.domain.CurrentUserDetails;
+import com.vg.sct.common.domain.CurrentUser;
 import com.vg.sct.common.exception.AuthException;
 import io.jsonwebtoken.*;
 
@@ -27,7 +27,7 @@ public class JwtUtils {
      * @param user  用户信息
      * @return
      */
-    public static String createToken(CurrentUserDetails user){
+    public static String createToken(CurrentUser user){
 
         //指定签名的时候使用的签名算法，也就是header那部分，jjwt已经将这部分内容封装好了。
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
@@ -91,7 +91,7 @@ public class JwtUtils {
     }
 
     public static void main(String[] args){
-        CurrentUserDetails user = new CurrentUserDetails();
+        CurrentUser user = new CurrentUser();
         user.setId(1);
         user.setUserName("vicky");
 

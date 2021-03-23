@@ -59,6 +59,13 @@
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
         </dependency>
+
+        <!-- Feign是一个声明式的Web服务客户端。它支持Feign本身的注解、JAX-RS注解以及SpringMVC的注解。
+     Spring Cloud集成Ribbon和Eureka以在使用Feign时提供负载均衡的http客户端。 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

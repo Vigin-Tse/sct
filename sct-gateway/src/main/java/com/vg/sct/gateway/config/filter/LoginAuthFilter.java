@@ -7,7 +7,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 /**
- * @description: 将登陆用户的JWT转化为用户信息的全局过滤器
+ * @description: 将登陆用户的JWT转化为用户信息的全局过滤器(亦可在每个微服务对token进行解析装换)
  * @author: xieweij
  * @create: 2021-03-22 16:51
  **/

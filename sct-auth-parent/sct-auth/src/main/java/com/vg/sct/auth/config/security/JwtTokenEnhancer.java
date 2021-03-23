@@ -24,8 +24,11 @@ public class JwtTokenEnhancer implements TokenEnhancer {
         //把用户id添加到jwt中
         Map<String, Object> info = new HashMap<>();
         info.put("user_id", user.getId());
+        info.put("wx_id", user.getWxId());
         info.put("user_name", user.getUsername());
         info.put("nick_name", user.getNickName());
+        info.put("phone_no", user.getPhoneNo());
+        info.put("email", user.getEmail());
         ((DefaultOAuth2AccessToken)accessToken).setAdditionalInformation(info);
         return accessToken;
     }

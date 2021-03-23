@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CurrentUserDetails {
+public class CurrentUser {
 
     private Integer id;
 

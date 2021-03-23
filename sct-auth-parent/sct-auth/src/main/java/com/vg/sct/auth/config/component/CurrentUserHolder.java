@@ -10,5 +10,5 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 public class CurrentUserHolder extends LoginUserContext {
-    
+
 }

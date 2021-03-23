@@ -52,7 +52,7 @@ public class OauthController {
         userLoginSuccesInfo.put("userId", additionalInfo.get("user_id"));
         userLoginSuccesInfo.put("userName", additionalInfo.get("user_name"));
         userLoginSuccesInfo.put("nickName", additionalInfo.get("nick_name"));
-        userLoginSuccesInfo.put("token", "bearer " + auth2AccessToken.getValue());
+        userLoginSuccesInfo.put("token", "Bearer " + auth2AccessToken.getValue());
 
         return new HttpResponseConvert().success("登录成功", userLoginSuccesInfo);
     }
