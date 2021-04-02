@@ -1,9 +1,12 @@
 package com.vg.sct.auth.controller;
 
 import com.vg.sct.auth.config.component.CurrentUserHolder;
+import com.vg.sct.auth.config.security.Oauth2ServerConfig;
+import com.vg.sct.common.constants.redis.RedisNamespaceConstants;
 import com.vg.sct.common.http.HttpResponse;
 import com.vg.sct.common.http.HttpResponseConvert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @description: (重写)自定义oauth2令牌相关接口
@@ -31,6 +35,9 @@ public class OauthController {
     @Autowired
     private CurrentUserHolder currentUserHolder;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     /**
      * 统一登录获取token
      * @param principal
@@ -42,17 +49,22 @@ public class OauthController {
     public HttpResponse postAccessToken(Principal principal, @RequestParam  Map<String, String> param) throws HttpRequestMethodNotSupportedException {
         OAuth2AccessToken auth2AccessToken = this.tokenEndpoint.postAccessToken(principal, param).getBody();
 
-        currentUserHolder.getCurrentUser();
+//        currentUserHolder.getCurrentUser();
 
         //提取登录成功后用户信息集合
         Map<String, Object> additionalInfo = auth2AccessToken.getAdditionalInformation();
 
+        String token = auth2AccessToken.getValue();
+        String userId = additionalInfo.get("user_id").toString();
+        redisTemplate.opsForValue().set(RedisNamespaceConstants.USER_LOGIN_TOKEN_NAMESPACE + userId, token, Oauth2ServerConfig.ACCESS_TOKEN_VALIDITU_SECONDS, TimeUnit.SECONDS);
+
         //设置登录成功返回用户信息
         Map<String, Object> userLoginSuccesInfo = new HashMap<>();
-        userLoginSuccesInfo.put("userId", additionalInfo.get("user_id"));
+        userLoginSuccesInfo.put("userId", userId);
         userLoginSuccesInfo.put("userName", additionalInfo.get("user_name"));
         userLoginSuccesInfo.put("nickName", additionalInfo.get("nick_name"));
-        userLoginSuccesInfo.put("token", "Bearer " + auth2AccessToken.getValue());
+        userLoginSuccesInfo.put("token", "Bearer " + token);
+
 
         return new HttpResponseConvert().success("登录成功", userLoginSuccesInfo);
     }

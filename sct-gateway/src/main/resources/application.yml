@@ -7,7 +7,7 @@ eureka:
 #日志
 logging:
   level:
-    root: debug
+    root: info
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
 #服务名、端口配置
@@ -17,6 +17,8 @@ server:
 #    context-path : /sct-gateway
 
 spring:
+  profiles:
+    active: sit #运行环境
   application:
     name: sct-gateway
   cloud:
@@ -44,6 +46,17 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: "http://localhost:5001/sct-auth/rsa/publicKey"
+  redis:
+    host: ${sct.redis.host}
+    port: ${sct.redis.port}
+    password: ${sct.redis.password}
+    database: 0  #操作第几个库
+    jedis:
+      pool:
+        max-active: 10 #最大连接数
+        max-wait: 6000ms #等待时间
+        max-idle: 8 #最大空闲数
+        min-idle: 3 #初始化最小数
 
 #配置不用鉴权的白名单
 security:

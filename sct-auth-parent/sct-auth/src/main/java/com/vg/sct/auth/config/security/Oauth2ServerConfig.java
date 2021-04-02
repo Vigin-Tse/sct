@@ -51,6 +51,16 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
     private JwtTokenEnhancer jwtTokenEnhancer;
 
     /**
+     * token过期时间 10min
+     */
+    public final static int ACCESS_TOKEN_VALIDITU_SECONDS = 600;
+
+    /**
+     * token刷新时间 10min
+     */
+    public final static int ACCESS_TOKEN_VALIDITU_REFRESH_SECONDS = 600;
+
+    /**
      * 这个configurer定义了客户端细节服务。客户详细信息可以被初始化。
      * @param client
      */
@@ -59,8 +69,8 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
         client.inMemory()
                 .withClient(ClientSecretEnum.SCT_WEB_CLIENT.getClient()) //配置client_id
                 .secret(passwordEncoder.encode(ClientSecretEnum.SCT_WEB_CLIENT.getSecret())) //配置client_secret
-                .accessTokenValiditySeconds(3600)       //配置访问token的有效期
-                .refreshTokenValiditySeconds(7200)    //配置刷新token的有效期
+                .accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITU_SECONDS)       //配置访问token的有效期
+                .refreshTokenValiditySeconds(ACCESS_TOKEN_VALIDITU_REFRESH_SECONDS)    //配置刷新token的有效期
                 .scopes("all")  //配置申请的权限范围
                 .redirectUris("http://www.baidu.com")   //配置redirect_uri，用于授权成功后带授权码跳转
 //                .autoApprove(true)                      //登录后绕过批准询问（confirm_access）

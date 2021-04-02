@@ -1,9 +1,7 @@
-package com.vg.sct.sys.config;
+package com.vg.sct.common.data.caching.config;
 
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
@@ -23,9 +21,9 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @EnableCaching 当你在配置类(@ Configuration)上使用@EnableCaching注解时，会触发一个post processor，
  * 这会扫描每一个spring bean，查看是否已经存在注解对应的缓存。如果找到了，就会自动创建一个代理拦截方法调用，使用缓存的bean执行处理。
  */
-@Configuration
-@EnableCaching
-public class ResdisConfig {
+//@Configuration
+//@EnableCaching
+public class SpringDataResdisConfig {
 
     /**
      * StringRedisTemplate

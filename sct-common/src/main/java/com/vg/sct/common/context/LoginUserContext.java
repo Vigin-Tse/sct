@@ -30,30 +30,36 @@ public class LoginUserContext{
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = servletRequestAttributes.getRequest();
         String token = request.getHeader(AuthConstants.JWT_TOKEN_HEADER);
-
         logger.info("header token传递 =  {}", token);
 
         CurrentUser currentUser = null;
-        if(!StringUtils.isEmpty(token)){
+        JWSObject jwsObject = null;
 
+        if(!StringUtils.isEmpty(token)){
+            //解析token
+            String realToken = token.replace(AuthConstants.JWT_TOKEN_PREFIX, "");
             try {
+
+                jwsObject = JWSObject.parse(realToken);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            if(jwsObject  != null){
                 currentUser = new CurrentUser();
-                String realToken = token.replace(AuthConstants.JWT_TOKEN_PREFIX, "");
-                JWSObject jwsObject = JWSObject.parse(realToken);
                 String userStr  = jwsObject.getPayload().toString();
+                JSONObject userObject = JSON.parseObject(userStr);
                 logger.info("登录token解析 =  {}", jwsObject.getPayload().toString());
 
-                JSONObject  userObject = JSON.parseObject(userStr);
                 currentUser.setId(Convert.toInt(userObject.get("user_id")));
                 currentUser.setWxId(userObject.getString("wx_id"));
                 currentUser.setUserName(userObject.getString("user_name"));
                 currentUser.setNickName(userObject.getString("nick_name"));
                 currentUser.setEmail(userObject.getString("email"));
                 currentUser.setPhoneNo(userObject.getString(userObject.getString("phone_no")));
-
-            } catch (ParseException e) {
-                e.printStackTrace();
             }
+
         }
 
         return currentUser;

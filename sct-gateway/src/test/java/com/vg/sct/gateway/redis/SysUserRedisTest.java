@@ -1,12 +1,14 @@
-package com.vg.sct.sys.redis;
+package com.vg.sct.gateway.redis;
 
 import com.alibaba.fastjson.JSON;
+import com.vg.sct.common.constants.redis.RedisNamespaceConstants;
 import com.vg.sct.common.domain.po.sys.SysUserPo;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+
+import javax.annotation.Resource;
 
 /**
  * @description: 用户rdis测试
@@ -16,10 +18,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SysUserRedisTest {
 
-    @Autowired
+    @Resource
     private RedisTemplate redisTemplate;
 
-    @Autowired
+    @Resource
     private RedisConnectionFactory redisConnectionFactory;
 
     @Test
@@ -34,11 +36,11 @@ public class SysUserRedisTest {
         SysUserPo user = new SysUserPo();
         user.setUserName("小ming");
         user.setEmail("172946282@qq.com");
-        user.setId(2);
+        user.setId(3);
 
-        this.redisTemplate.opsForValue().set("sys-user:user:2", user);
+        this.redisTemplate.opsForValue().set("sys-user:user:3", user);
 
-        SysUserPo user2 = (SysUserPo) this.redisTemplate.opsForValue().get("sys-user:user:2");
+        SysUserPo user2 = (SysUserPo) this.redisTemplate.opsForValue().get("sys-user:user:3");
         System.out.println(JSON.toJSONString(user2));
     }
 
@@ -49,5 +51,15 @@ public class SysUserRedisTest {
 
         String value = (String) this.redisTemplate.opsForValue().get("1-1");
         System.out.println(value);
+    }
+
+    @Test
+    public void testGetToken(){
+        int userId = 3;
+        String redisToken = (String) this.redisTemplate.opsForValue().get(RedisNamespaceConstants.USER_LOGIN_TOKEN_NAMESPACE + userId);
+
+//        String redisToken = (String) this.redisTemplate.opsForValue().get("USER:LOGIN:TOKEN:3");
+        System.out.println("token=" + redisToken);
+
     }
 }
