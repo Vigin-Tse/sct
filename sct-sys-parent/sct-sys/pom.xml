@@ -73,6 +73,10 @@
 
     <build>
         <plugins>
+            <!--
+            在不使用spring-boot-maven-plugin插件打包springboot的web项目生成的jar包是无法直接运行的。
+            因为直接打包的jar包仅仅是一个普通的jar包，没有打包依赖也没有指定main-class，所以无法直接运行。
+            所以需要在pom中引入spring-boot-maven-plugin插件。该插件的作用是对普通的jar包做repackage，从而生成一个可执行的jar文件 -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

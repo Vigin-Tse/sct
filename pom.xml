@@ -27,11 +27,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <!-- properties部分声明公用变量，可被直接继承 -->
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
     </properties>
 
+    <!-- dependencies部分是公用的依赖，可被直接继承 -->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -67,6 +69,9 @@
         </dependency>
     </dependencies>
 
+    <!-- dependencyManagement部分用于管理依赖，被dependencyManagement配置的元素既不会引入父项目的依赖，也不会给子项目引入依赖，
+    只是表示该部分是可被继承的，但不直接被引用。如果需要引用dependencyManagement部分内容，
+    只需申明groupId和artifactId即可，不需要版本号。maven或自动继承dependencyManagement中相同名称的依赖 -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -79,13 +84,17 @@
         </dependencies>
     </dependencyManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <!-- repositoties是用来定义私服仓库的 -->
 
+    <!-- distributionManagement是用来将打包后的项目发布到私服上的。 -->
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>http://47.106.105.217:9005/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>http://47.106.105.217:9005/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
