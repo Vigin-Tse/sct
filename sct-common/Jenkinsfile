@@ -1,7 +1,5 @@
 node{
 
-    stages{
-
     stage('Print Message') {      //打印信息
       echo '打印信息'
       echo "Project_Pipeline_name: ${JOB_NAME}"
@@ -39,5 +37,5 @@ node{
 //    def imagesName = '172.18.118.25:9003/sct-eureka:lastest -f ./${Project_name}/DockerFile'
 //        docker.build(imagesName).push()
 //    }
-}
+
 }
