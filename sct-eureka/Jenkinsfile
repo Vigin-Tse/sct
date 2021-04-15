@@ -1,0 +1,24 @@
+node{
+    stage('Check Out'){
+        //check CODE
+      git credentialsId: 'git-key',
+      url: 'https://github.com/Vigin-Tse/sct.git'
+    }
+
+    //定义mvn环境
+    def mvnHome = tool 'maven'
+    env.PATH = "${mvnHome}/bin:${env.PATH}"
+
+    stage('Deploy'){
+        //进入构建目录
+        sh 'cd sct-eureka'
+
+        //mvn构建
+        sh "mvn clean deploy -Dmaven.test.skip=true"
+    }
+
+    stage('ImageBuild'){
+    def imagesName = '172.18.118.25:9003/sct-eureka:lastest'
+        docker.build(imagesName).push()
+    }
+}
