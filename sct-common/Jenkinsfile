@@ -11,7 +11,7 @@ node{
 
     stage('Deploy'){
         //进入构建目录
-        sh 'cd sct-eureka'
+        sh 'cd sct-common'
 
         //mvn构建
         sh "mvn clean deploy -Dmaven.test.skip=true"
