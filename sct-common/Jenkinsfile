@@ -1,26 +1,24 @@
 node{
 
+    stages{
+
     stage('Print Message') {      //打印信息
-            steps {
-                echo '打印信息'
-                echo "Project_Pipeline_name: ${JOB_NAME}"
-                echo "Project_module_name: ${PROJECT_NAME}"
-                echo "workspace: ${WORKSPACE}"
-                echo "branch: ${Branch_name}"           //gitlab分支名
-                echo "build_id: ${BUILD_ID}"
-                echo "target_action: ${action}"
-                echo "registryUrl: ${registryUrl}"
-                echo "image_repository: ${registryUrl}/${Project_name}"
-           }
-        }
+      echo '打印信息'
+      echo "Project_Pipeline_name: ${JOB_NAME}"
+      echo "Project_module_name: ${PROJECT_NAME}"
+      echo "workspace: ${WORKSPACE}"
+      echo "branch: ${Branch_name}"           //gitlab分支名
+      echo "build_id: ${BUILD_ID}"
+      echo "target_action: ${action}"
+      echo "registryUrl: ${registryUrl}"
+      echo "image_repository: ${registryUrl}/${Project_name}"
+    }
 
     //此步骤在调试Jenkinsfile时可以注释以便了解目录结构
     stage('Clean') {         //清理工作目录
-            steps {
-                echo "清理工作目录: ${WORKSPACE}"
-                deleteDir()     //表示删除当前目录(${WORKSPACE})下内容，通常用在构建完毕之后清空工作空间
-            }
-        }
+      echo "清理工作目录: ${WORKSPACE}"
+      deleteDir()     //表示删除当前目录(${WORKSPACE})下内容，通常用在构建完毕之后清空工作空间
+    }
 
     stage('Checkout'){
         //check CODE
