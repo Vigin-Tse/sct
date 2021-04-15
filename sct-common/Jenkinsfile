@@ -6,8 +6,6 @@ node{
       echo "Project_module_name: ${PROJECT_NAME}"
       echo "workspace: ${WORKSPACE}"
       echo "build_id: ${BUILD_ID}"
-      echo "registryUrl: ${registryUrl}"
-      echo "image_repository: ${registryUrl}/${Project_name}"
     }
 
     //此步骤在调试Jenkinsfile时可以注释以便了解目录结构
