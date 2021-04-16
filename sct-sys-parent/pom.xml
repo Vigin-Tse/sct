@@ -16,8 +16,8 @@
     </parent>
 
     <modules>
-        <module>sct-sys</module>
         <module>sct-sys-feign-api</module>
+        <module>sct-sys</module>
     </modules>
 
     <dependencies>

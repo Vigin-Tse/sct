@@ -16,8 +16,8 @@
     </parent>
 
     <modules>
-        <module>sct-auth</module>
         <module>sct-auth-feign-api</module>
+        <module>sct-auth</module>
     </modules>
 
     <dependencies>
