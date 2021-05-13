@@ -1,7 +1,7 @@
 package com.vg.sct.auth.controller;
 
-import com.vg.sct.common.http.HttpResponse;
-import com.vg.sct.common.http.HttpResponseConvert;
+import com.vg.sct.common.support.http.HttpResponse;
+import com.vg.sct.common.support.http.HttpResponseConvert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

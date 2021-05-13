@@ -1,4 +1,4 @@
-package com.vg.sct.common.config.interceptor;
+package com.vg.sct.common.support.config.intercceptor;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;

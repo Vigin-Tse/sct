@@ -1,6 +1,6 @@
 package com.vg.sct.auth.config;
 
-import com.vg.sct.common.data.caching.config.SpringDataResdisConfig;
+import com.vg.sct.common.support.config.caching.SpringDataResdisConfig;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;
 

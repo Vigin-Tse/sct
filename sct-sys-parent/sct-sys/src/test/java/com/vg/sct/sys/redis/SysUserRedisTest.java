@@ -1,7 +1,7 @@
 package com.vg.sct.sys.redis;
 
 import com.alibaba.fastjson.JSON;
-import com.vg.sct.common.domain.po.sys.SysUserPo;
+import com.vg.sct.common.domain.model.sys.SysUserModel;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,14 +31,14 @@ public class SysUserRedisTest {
 
     @Test
     public void testSaveUser() {
-        SysUserPo user = new SysUserPo();
+        SysUserModel user = new SysUserModel();
         user.setUserName("小ming");
         user.setEmail("172946282@qq.com");
         user.setId(2);
 
         this.redisTemplate.opsForValue().set("sys-user:user:2", user);
 
-        SysUserPo user2 = (SysUserPo) this.redisTemplate.opsForValue().get("sys-user:user:2");
+        SysUserModel user2 = (SysUserModel) this.redisTemplate.opsForValue().get("sys-user:user:2");
         System.out.println(JSON.toJSONString(user2));
     }
 

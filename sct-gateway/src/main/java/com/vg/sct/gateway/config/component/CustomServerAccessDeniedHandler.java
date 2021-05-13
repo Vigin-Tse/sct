@@ -1,7 +1,7 @@
 package com.vg.sct.gateway.config.component;
 
 import com.alibaba.fastjson.JSON;
-import com.vg.sct.common.http.HttpResponseConvert;
+import com.vg.sct.common.support.http.HttpResponseConvert;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

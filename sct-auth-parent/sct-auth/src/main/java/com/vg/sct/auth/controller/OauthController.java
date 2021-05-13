@@ -2,9 +2,9 @@ package com.vg.sct.auth.controller;
 
 import com.vg.sct.auth.config.component.CurrentUserHolder;
 import com.vg.sct.auth.config.security.Oauth2ServerConfig;
-import com.vg.sct.common.constants.redis.RedisNamespaceConstants;
-import com.vg.sct.common.http.HttpResponse;
-import com.vg.sct.common.http.HttpResponseConvert;
+import com.vg.sct.common.support.constants.redis.RedisNamespaceConstants;
+import com.vg.sct.common.support.http.HttpResponse;
+import com.vg.sct.common.support.http.HttpResponseConvert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;

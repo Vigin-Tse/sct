@@ -1,4 +1,4 @@
-package com.vg.sct.common.constants.redis;
+package com.vg.sct.common.support.constants.redis;
 
 /**
  * @description: redis命名空间规范

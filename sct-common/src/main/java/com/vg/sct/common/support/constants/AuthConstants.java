@@ -1,4 +1,4 @@
-package com.vg.sct.common.constants;
+package com.vg.sct.common.support.constants;
 
 /**
  * 权限相关权限定义

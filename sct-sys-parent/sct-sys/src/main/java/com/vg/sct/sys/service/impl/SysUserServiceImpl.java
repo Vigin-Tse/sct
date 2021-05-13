@@ -1,8 +1,8 @@
 package com.vg.sct.sys.service.impl;
 
-import com.vg.sct.common.constants.ClientSecretEnum;
-import com.vg.sct.common.domain.po.sys.SysUserPo;
-import com.vg.sct.common.http.HttpResponse;
+import com.vg.sct.common.support.constants.ClientSecretEnum;
+import com.vg.sct.common.domain.model.sys.SysUserModel;
+import com.vg.sct.common.support.http.HttpResponse;
 import com.vg.sct.feign.auth.api.OauthFeignApi;
 import com.vg.sct.sys.domain.vo.UserInfoVo;
 import com.vg.sct.sys.repository.SysUserRepository;
@@ -49,7 +49,7 @@ public class SysUserServiceImpl implements SysUserService {
     public UserInfoVo getUserInfo(Integer userId) {
         UserInfoVo userInfoVo = new UserInfoVo();
 
-        SysUserPo userPo = userRepository.getOne(userId);
+        SysUserModel userPo = userRepository.getOne(userId);
         BeanUtils.copyProperties(userPo, userInfoVo);
         return userInfoVo;
     }

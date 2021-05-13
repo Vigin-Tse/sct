@@ -1,6 +1,6 @@
 package com.vg.sct.sys.service;
 
-import com.vg.sct.common.http.HttpResponse;
+import com.vg.sct.common.support.http.HttpResponse;
 import com.vg.sct.sys.domain.vo.UserInfoVo;
 
 /**

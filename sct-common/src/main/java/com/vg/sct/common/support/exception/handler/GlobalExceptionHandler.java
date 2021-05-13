@@ -1,9 +1,9 @@
-package com.vg.sct.common.exception.handler;
+package com.vg.sct.common.support.exception.handler;
 
-import com.vg.sct.common.exception.AuthException;
-import com.vg.sct.common.exception.BusinessException;
-import com.vg.sct.common.http.HttpResponse;
-import com.vg.sct.common.http.HttpResponseConvert;
+import com.vg.sct.common.support.exception.AuthException;
+import com.vg.sct.common.support.exception.BusinessException;
+import com.vg.sct.common.support.http.HttpResponse;
+import com.vg.sct.common.support.http.HttpResponseConvert;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**

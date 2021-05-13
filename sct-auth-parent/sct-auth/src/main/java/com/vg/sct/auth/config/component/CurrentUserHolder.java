@@ -1,6 +1,6 @@
 package com.vg.sct.auth.config.component;
 
-import com.vg.sct.common.context.LoginUserContext;
+import com.vg.sct.common.support.context.LoginUserContext;
 import org.springframework.stereotype.Component;
 
 /**

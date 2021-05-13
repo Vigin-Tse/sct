@@ -1,8 +1,8 @@
 package com.vg.sct.auth.config.handler;
 
-import com.vg.sct.common.exception.handler.GlobalExceptionHandler;
-import com.vg.sct.common.http.HttpResponse;
-import com.vg.sct.common.http.HttpResponseConvert;
+import com.vg.sct.common.support.exception.handler.GlobalExceptionHandler;
+import com.vg.sct.common.support.http.HttpResponse;
+import com.vg.sct.common.support.http.HttpResponseConvert;
 import org.springframework.security.oauth2.common.exceptions.InvalidGrantException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

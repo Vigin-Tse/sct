@@ -1,8 +1,8 @@
 package com.vg.sct.auth.redis;
 
 import com.alibaba.fastjson.JSON;
-import com.vg.sct.common.constants.redis.RedisNamespaceConstants;
-import com.vg.sct.common.domain.po.sys.SysUserPo;
+import com.vg.sct.common.support.constants.redis.RedisNamespaceConstants;
+import com.vg.sct.common.domain.model.sys.SysUserModel;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,14 +32,14 @@ public class SysUserRedisTest {
 
     @Test
     public void testSaveUser() {
-        SysUserPo user = new SysUserPo();
+        SysUserModel user = new SysUserModel();
         user.setUserName("小ming");
         user.setEmail("172946282@qq.com");
         user.setId(3);
 
         this.redisTemplate.opsForValue().set("sys-user:user:3", user);
 
-        SysUserPo user2 = (SysUserPo) this.redisTemplate.opsForValue().get("sys-user:user:3");
+        SysUserModel user2 = (SysUserModel) this.redisTemplate.opsForValue().get("sys-user:user:3");
         System.out.println(JSON.toJSONString(user2));
     }
 

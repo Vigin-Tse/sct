@@ -1,6 +1,6 @@
-package com.vg.sct.common.exception;
+package com.vg.sct.common.support.exception;
 
-import com.vg.sct.common.exception.base.BaseException;
+import com.vg.sct.common.support.exception.base.BaseException;
 
 /**
  * @description: 业务异常

@@ -1,6 +1,6 @@
 package com.vg.sct.sys.config.handler;
 
-import com.vg.sct.common.exception.handler.GlobalExceptionHandler;
+import com.vg.sct.common.support.exception.handler.GlobalExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**

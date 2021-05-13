@@ -1,6 +1,6 @@
 package com.vg.sct.feign.auth.api;
 
-import com.vg.sct.common.http.HttpResponse;
+import com.vg.sct.common.support.http.HttpResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;

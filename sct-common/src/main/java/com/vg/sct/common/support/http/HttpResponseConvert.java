@@ -1,4 +1,4 @@
-package com.vg.sct.common.http;
+package com.vg.sct.common.support.http;
 
 /**
  * @description: 响应统一返回类

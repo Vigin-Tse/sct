@@ -1,6 +1,6 @@
 package com.vg.sct.sys.config;
 
-import com.vg.sct.common.config.interceptor.FeginBaseInterceptor;
+import com.vg.sct.common.support.config.intercceptor.FeginBaseInterceptor;
 import org.springframework.context.annotation.Configuration;
 
 /**

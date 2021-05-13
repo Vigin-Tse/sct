@@ -1,8 +1,8 @@
 package com.vg.sct.sys.controller;
 
 import com.vg.sct.common.domain.vo.UserPsLoginRquest;
-import com.vg.sct.common.http.HttpResponse;
-import com.vg.sct.common.http.HttpResponseConvert;
+import com.vg.sct.common.support.http.HttpResponse;
+import com.vg.sct.common.support.http.HttpResponseConvert;
 import com.vg.sct.sys.config.component.CurrentUserHolder;
 import com.vg.sct.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;

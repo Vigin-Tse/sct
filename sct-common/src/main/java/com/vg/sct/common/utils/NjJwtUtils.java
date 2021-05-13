@@ -5,7 +5,7 @@ import com.nimbusds.jose.JWSObject;
 import com.nimbusds.jose.JWSVerifier;
 import com.nimbusds.jose.crypto.RSASSAVerifier;
 import com.nimbusds.jose.jwk.RSAKey;
-import com.vg.sct.common.exception.AuthException;
+import com.vg.sct.common.support.exception.AuthException;
 
 import java.text.ParseException;
 

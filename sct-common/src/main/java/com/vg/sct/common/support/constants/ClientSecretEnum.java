@@ -1,4 +1,4 @@
-package com.vg.sct.common.constants;
+package com.vg.sct.common.support.constants;
 
 public enum ClientSecretEnum {
 

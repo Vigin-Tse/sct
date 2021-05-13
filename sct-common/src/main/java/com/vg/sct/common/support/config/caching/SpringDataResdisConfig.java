@@ -1,4 +1,4 @@
-package com.vg.sct.common.data.caching.config;
+package com.vg.sct.common.support.config.caching;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;

@@ -1,10 +1,10 @@
-package com.vg.sct.common.context;
+package com.vg.sct.common.support.context;
 
 import cn.hutool.core.convert.Convert;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.nimbusds.jose.JWSObject;
-import com.vg.sct.common.constants.AuthConstants;
+import com.vg.sct.common.support.constants.AuthConstants;
 import com.vg.sct.common.domain.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

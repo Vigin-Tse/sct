@@ -1,6 +1,6 @@
 package com.vg.sct.auth.config.security;
 
-import com.vg.sct.common.constants.ClientSecretEnum;
+import com.vg.sct.common.support.constants.ClientSecretEnum;
 import com.vg.sct.auth.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

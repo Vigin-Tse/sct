@@ -1,7 +1,7 @@
 package com.vg.sct.common.utils;
 
 import com.vg.sct.common.domain.CurrentUser;
-import com.vg.sct.common.exception.AuthException;
+import com.vg.sct.common.support.exception.AuthException;
 import io.jsonwebtoken.*;
 
 import java.util.Date;

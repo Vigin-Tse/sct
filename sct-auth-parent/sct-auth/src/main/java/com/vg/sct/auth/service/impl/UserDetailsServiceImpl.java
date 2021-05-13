@@ -2,8 +2,8 @@ package com.vg.sct.auth.service.impl;
 
 import com.vg.sct.auth.domain.security.SecurityUser;
 import com.vg.sct.auth.repository.SysUserRepository;
-import com.vg.sct.common.domain.po.sys.SysUserPo;
-import com.vg.sct.common.exception.AuthException;
+import com.vg.sct.common.domain.model.sys.SysUserModel;
+import com.vg.sct.common.support.exception.AuthException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -33,7 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public SecurityUser loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-        List<SysUserPo> users = this.userRepository.findByUserName(userName);
+        List<SysUserModel> users = this.userRepository.findByUserName(userName);
         if (CollectionUtils.isEmpty(users)){
             throw new AuthException("用户名或密码不正确！");
         }

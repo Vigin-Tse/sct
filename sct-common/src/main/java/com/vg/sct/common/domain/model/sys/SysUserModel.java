@@ -1,4 +1,4 @@
-package com.vg.sct.common.domain.po.sys;
+package com.vg.sct.common.domain.model.sys;
 
 import lombok.Data;
 
@@ -13,7 +13,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "sys_user")
-public class SysUserPo {
+public class SysUserModel {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

@@ -1,4 +1,4 @@
-package com.vg.sct.common.http;
+package com.vg.sct.common.support.http;
 
 import lombok.Getter;
 import lombok.Setter;

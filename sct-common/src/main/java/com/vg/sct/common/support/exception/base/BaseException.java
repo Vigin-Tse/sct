@@ -1,4 +1,4 @@
-package com.vg.sct.common.exception.base;
+package com.vg.sct.common.support.exception.base;
 
 /**
  * @description: 自定义异常基础类
