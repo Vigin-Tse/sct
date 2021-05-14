@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-@SpringBootApplication
 @EntityScan("com.vg.sct")
+@SpringBootApplication
 public class SctAuthApplication {
 
     public static void main(String[] args) {

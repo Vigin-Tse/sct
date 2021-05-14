@@ -1,9 +1,10 @@
 package com.vg.sct.common.domain.model.sys;
 
+import com.vg.sct.common.domain.model.base.BaseModel;
 import lombok.Data;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * @Description
@@ -13,7 +14,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "sys_user")
-public class SysUserModel {
+public class SysUserModel extends BaseModel{
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -39,17 +40,5 @@ public class SysUserModel {
 
     @Column(name = "is_active")
     private Boolean isActive;
-
-    @Column(name = "creator")
-    private Integer creator;
-
-    @Column(name = "create_time")
-    private Date createTime;
-
-    @Column(name = "modifier")
-    private Integer modifier;
-
-    @Column(name = "modify_time")
-    private Date modifyTime;
 
 }

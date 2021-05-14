@@ -13,6 +13,8 @@ import java.security.NoSuchAlgorithmException;
  **/
 public class MD5Utils {
 
+    public final static String DEFAULT_PASSWORD = "abc@1234";
+
 
     /**
      * jdk原生方法

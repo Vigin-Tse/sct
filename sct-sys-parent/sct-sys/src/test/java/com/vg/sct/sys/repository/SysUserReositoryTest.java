@@ -26,4 +26,17 @@ public class SysUserReositoryTest {
         SysUserModel user = oUser.get();
         System.out.println(JSON.toJSONString(user));
     }
+
+    /**
+     * 测试创建人等信息自动回填
+     */
+    @Test
+    public void saveUserAuditingTest(){
+
+        SysUserModel save = new SysUserModel();
+//        save.setId(11);
+        save.setUserName("回填8-修改");
+
+        this.sysUserRepository.save(save);
+    }
 }

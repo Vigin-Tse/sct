@@ -4,6 +4,7 @@ import com.vg.sct.common.domain.vo.UserPsLoginRquest;
 import com.vg.sct.common.support.http.HttpResponse;
 import com.vg.sct.common.support.http.HttpResponseConvert;
 import com.vg.sct.sys.config.component.CurrentUserHolder;
+import com.vg.sct.sys.domain.dto.UserUpdateDto;
 import com.vg.sct.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +30,18 @@ public class SysUserController {
         return this.userService.loginByUserNameAndPsw(request.getUserName(), request.getPassword());
     }
 
-    @PostMapping("/userinfo")
+    @GetMapping("/userinfo")
     public HttpResponse userInfo(@RequestParam Integer userId) {
-        currentUserHolder.getCurrentUser();
         return HttpResponseConvert.success(this.userService.getUserInfo(userId));
+    }
+
+    @PostMapping("/add")
+    public HttpResponse createUser(@RequestBody UserUpdateDto dto){
+        return HttpResponseConvert.success(this.userService.createUser(dto));
+    }
+
+    @PostMapping("/update")
+    public HttpResponse updateUser(@RequestBody UserUpdateDto dto){
+        return HttpResponseConvert.success(this.userService.updateUser(dto));
     }
 }

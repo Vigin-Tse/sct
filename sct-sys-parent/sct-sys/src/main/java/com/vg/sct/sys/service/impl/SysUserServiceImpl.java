@@ -2,8 +2,12 @@ package com.vg.sct.sys.service.impl;
 
 import com.vg.sct.common.support.constants.ClientSecretEnum;
 import com.vg.sct.common.domain.model.sys.SysUserModel;
+import com.vg.sct.common.support.exception.BusinessException;
 import com.vg.sct.common.support.http.HttpResponse;
+import com.vg.sct.common.utils.MD5Utils;
 import com.vg.sct.feign.auth.api.OauthFeignApi;
+import com.vg.sct.sys.constants.UserCommonConstants;
+import com.vg.sct.sys.domain.dto.UserUpdateDto;
 import com.vg.sct.sys.domain.vo.UserInfoVo;
 import com.vg.sct.sys.repository.SysUserRepository;
 import com.vg.sct.sys.service.SysUserService;
@@ -49,8 +53,42 @@ public class SysUserServiceImpl implements SysUserService {
     public UserInfoVo getUserInfo(Integer userId) {
         UserInfoVo userInfoVo = new UserInfoVo();
 
-        SysUserModel userPo = userRepository.getOne(userId);
-        BeanUtils.copyProperties(userPo, userInfoVo);
+        SysUserModel userModel = userRepository.getOne(userId);
+        BeanUtils.copyProperties(userModel, userInfoVo);
         return userInfoVo;
+    }
+
+    @Override
+    public UserUpdateDto createUser(UserUpdateDto userUpdateDto) {
+        if (userUpdateDto != null && userUpdateDto.getId() == null){
+            SysUserModel saveModel = new SysUserModel();
+            BeanUtils.copyProperties(userUpdateDto, saveModel);
+
+            //初始化默认密码
+            saveModel.setPassword(MD5Utils.encodeMd5(MD5Utils.DEFAULT_PASSWORD));
+            saveModel.setIsActive(UserCommonConstants.IsActive.Y);
+            saveModel =  this.userRepository.save(saveModel);
+            BeanUtils.copyProperties(saveModel, userUpdateDto);
+        }else{
+            throw new BusinessException("新建用户失败，请重新录入用户资料！");
+        }
+        return userUpdateDto;
+    }
+
+    @Override
+    public UserUpdateDto updateUser(UserUpdateDto userUpdateDto) {
+        if (userUpdateDto != null && userUpdateDto.getId() != null){
+            SysUserModel model = this.userRepository.findById(userUpdateDto.getId()).orElse(null);
+            if (model == null){
+                throw new BusinessException("更新用户资料失败，用户不存在");
+            }
+
+            BeanUtils.copyProperties(userUpdateDto, model);
+            model = this.userRepository.save(model);
+            BeanUtils.copyProperties(model, userUpdateDto);
+        }else{
+            throw new BusinessException("更新用户资料失败，请重新填入修改资料！");
+        }
+        return userUpdateDto;
     }
 }
