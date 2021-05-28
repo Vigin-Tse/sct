@@ -10,6 +10,10 @@ import java.util.Optional;
 
 
 /**
+ * spring boot 2.2前：
+ * @RunWith(SpringRunner.class)
+ * @SpringBootTest
+ *
  * @description: 用户Jpa测试
  * @author: xieweij
  * @create: 2020-12-29 09:00
@@ -38,5 +42,15 @@ public class SysUserReositoryTest {
         save.setUserName("回填8-修改");
 
         this.sysUserRepository.save(save);
+    }
+
+    @Test
+    public void atest(){
+
+        SysUserModel save = new SysUserModel();
+        save.setId(11);
+        save.setUserName("回填8-修改");
+
+        System.out.println(JSON.toJSONString(save));
     }
 }
