@@ -10,10 +10,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.HashMap;
@@ -66,6 +63,12 @@ public class OauthController {
         userLoginSuccesInfo.put("token", "Bearer " + token);
 
 
-        return new HttpResponseConvert().success("登录成功", userLoginSuccesInfo);
+        return HttpResponseConvert.success("登录成功", userLoginSuccesInfo);
+    }
+
+    @GetMapping("/demo")
+    public HttpResponse demo(){
+        System.out.println("远程调用接口：demo-5001");
+        return HttpResponseConvert.success("远程调用接口：demo-5001");
     }
 }

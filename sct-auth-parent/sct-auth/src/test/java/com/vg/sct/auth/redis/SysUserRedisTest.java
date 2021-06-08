@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @description: 用户rdis测试
  * @author: xieweij
@@ -46,10 +48,12 @@ public class SysUserRedisTest {
     @Test
     public void testSaveString() {
 
-        this.redisTemplate.opsForValue().set("1-1", "i am test");
-
+        this.redisTemplate.opsForValue().set("1-1", "i am test 20s", 20, TimeUnit.SECONDS);
+        boolean result = this.redisTemplate.opsForValue().setIfAbsent("1-2", "i am setnx 20s", 20, TimeUnit.SECONDS);
+        System.out.println("setIfAbsent result:" + result);
         String value = (String) this.redisTemplate.opsForValue().get("1-1");
-        System.out.println(value);
+        String value2 = (String) this.redisTemplate.opsForValue().get("1-2");
+        System.out.println(value + ";" + value2);
     }
 
     @Test

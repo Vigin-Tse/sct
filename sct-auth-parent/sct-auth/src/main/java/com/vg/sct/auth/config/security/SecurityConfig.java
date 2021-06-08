@@ -63,6 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/rsa/publicKey").permitAll()
+                .antMatchers("/oauth/demo").permitAll()
                 .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()  //所有endpoint，permitAll() 无条件允许访问
                 .anyRequest().authenticated() //除上面外的所有请求全部需要鉴权认证
                 .and()

@@ -66,15 +66,12 @@ eureka:
     service-url:
       defaultZone: http://localhost:8000/eureka #注册地址
 
+
 #日志
 logging:
   level:
     root: info
     org.hibernate.type.descriptor.sql.BasicBinder: trace
-
-
-
-
 
 #management:
 #  endpoints:
