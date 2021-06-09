@@ -22,9 +22,9 @@ import java.text.ParseException;
  **/
 public class LoginUserContext{
 
-    private final Logger logger = LoggerFactory.getLogger(LoginUserContext.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoginUserContext.class);
 
-    public CurrentUser getCurrentUser(){
+    public static CurrentUser getCurrentUser(){
 
         //从Header中获取用户信息
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();

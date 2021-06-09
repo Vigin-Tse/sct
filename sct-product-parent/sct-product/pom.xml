@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.vg</groupId>
-        <artifactId>sct-sys-parent</artifactId>
+        <artifactId>sct-product-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <groupId>com.vg</groupId>
-    <artifactId>sct-sys</artifactId>
+    <artifactId>sct-product</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sct-sys</name>
+    <name>sct-product</name>
     <description>Demo project for Spring Boot</description>
     <packaging>jar</packaging>
 
@@ -66,12 +66,6 @@
         <dependency>
             <groupId>com.vg</groupId>
             <artifactId>sct-auth-feign-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.vg</groupId>
-            <artifactId>sct-product-feign-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

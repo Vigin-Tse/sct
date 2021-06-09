@@ -15,8 +15,8 @@
         <module>sct-eureka</module>
         <module>sct-auth-parent</module>
         <module>sct-sys-parent</module>
+        <module>sct-product-parent</module>
         <module>sct-order</module>
-        <module>sct-product</module>
         <module>sct-gateway</module>
     </modules>
 

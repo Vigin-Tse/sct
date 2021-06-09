@@ -1,11 +1,12 @@
 package com.vg.sct.auth.controller;
 
-import com.vg.sct.auth.config.component.CurrentUserHolder;
 import com.vg.sct.auth.config.security.Oauth2ServerConfig;
 import com.vg.sct.common.support.constants.redis.RedisNamespaceConstants;
 import com.vg.sct.common.support.http.HttpResponse;
 import com.vg.sct.common.support.http.HttpResponseConvert;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
@@ -24,16 +25,17 @@ import java.util.concurrent.TimeUnit;
  **/
 @RestController
 @RequestMapping("/oauth")
+@Slf4j
 public class OauthController {
 
     @Autowired
     private TokenEndpoint tokenEndpoint;
 
     @Autowired
-    private CurrentUserHolder currentUserHolder;
-
-    @Autowired
     private RedisTemplate redisTemplate;
+
+    @Value("${server.port}")
+    private String port;
 
     /**
      * 统一登录获取token
@@ -67,8 +69,9 @@ public class OauthController {
     }
 
     @GetMapping("/demo")
-    public HttpResponse demo(){
-        System.out.println("远程调用接口：demo-5001");
-        return HttpResponseConvert.success("远程调用接口：demo-5001");
+    public HttpResponse demo() throws InterruptedException {
+        Thread.sleep(3000);
+        log.info("远程调用接口：demo-{}", port);
+        return HttpResponseConvert.success("远程调用接口：demo-" + port);
     }
 }
