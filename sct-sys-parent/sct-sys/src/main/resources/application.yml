@@ -1,12 +1,8 @@
-sct:
-  db:
-    adress: localhost/dbname
-    username: admin
-    password: admin123
-  redis:
-    host: localhost
-    port: 8089
-    password: admin123
+#服务名、端口配置
+server:
+  port: 5002
+  servlet:
+    context-path: /sct-sys
 
 #数据库连接配置
 spring:
@@ -42,7 +38,7 @@ spring:
       # upadte：每次运行程序，没有表时会创建表，如果对象发生改变会更新表结构，原有数据不会清空，只会更新（推荐使用）
       # validate：运行程序会校验数据与数据库的字段类型是否相同，字段不同会报错
       # none: 禁用DDL处理
-      ddl-auto: validate
+      ddl-auto: none
   redis:
     host: ${sct.redis.host}
     port: ${sct.redis.port}
@@ -69,22 +65,6 @@ ribbon:
   MaxAutoRetries: 0 # 对当前实例的重试次数
   #请求次数 = MaxAutoRetries + MaxAutoRetriesNextServer + (MaxAutoRetries * MaxAutoRetiresNextServer) + 1
 
-sct-product:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
-    ConnectTimeout: 5000 #请求连接超时时间(ms)
-    ReadTimeout: 5000 #请求处理的超时时间(ms)
-    OkToRetryOnAllOperations: true #true:对所有请求(包括GET)都进行重试
-    MaxAutoRetriesNextServer: 2 # 切换实例的重试次数
-    MaxAutoRetries: 2 # 对当前实例的重试次数
-
-
-#服务名、端口配置
-server:
-  port: 5002
-  servlet:
-    context-path: /sct-sys
-
 eureka:
   client:
     service-url:
@@ -95,3 +75,13 @@ logging:
   level:
     root: info
     org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+sct:
+  db:
+    adress: localhost/dbname
+    username: admin
+    password: admin123
+  redis:
+    host: localhost
+    port: 8089
+    password: admin123

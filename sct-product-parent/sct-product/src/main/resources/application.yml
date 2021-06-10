@@ -1,12 +1,8 @@
-sct:
-  db:
-    adress: localhost/dbname
-    username: admin
-    password: admin123
-  redis:
-    host: localhost
-    port: 8089
-    password: admin123
+#服务名、端口配置
+server:
+  port: 5006
+  servlet:
+    context-path: /sct-product
 
 #数据库连接配置
 spring:
@@ -68,13 +64,6 @@ ribbon:
   MaxAutoRetries: 0 # 对当前实例的重试次数
   #请求次数 = MaxAutoRetries + MaxAutoRetriesNextServer + (MaxAutoRetries * MaxAutoRetiresNextServer) + 1
 
-
-#服务名、端口配置
-server:
-  port: 5006
-  servlet:
-    context-path: /sct-product
-
 eureka:
   client:
     service-url:
@@ -85,3 +74,13 @@ logging:
   level:
     root: info
     org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+sct:
+  db:
+    adress: localhost/dbname
+    username: admin
+    password: admin123
+  redis:
+    host: localhost
+    port: 8089
+    password: admin123

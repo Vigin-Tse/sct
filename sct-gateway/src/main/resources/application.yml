@@ -1,3 +1,9 @@
+#服务名、端口配置
+server:
+  port: 5000
+#  servlet:
+#    context-path : /sct-gateway
+
 #注册中心配置
 eureka:
   client:
@@ -10,12 +16,6 @@ logging:
     root: info
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
-#服务名、端口配置
-server:
-  port: 5000
-#  servlet:
-#    context-path : /sct-gateway
-
 spring:
   profiles:
     active: sit #运行环境
@@ -23,6 +23,9 @@ spring:
     name: sct-gateway
   cloud:
     gateway:
+      httpclient: #gateway全局超时设置
+        connect-timeout: 10000 #默认为毫秒单位 connect-timeout 默认为45s
+        response-timeout: 10s #点进源码可设置不同单位，我这里设置为5s
       discovery:
 #        locator:
           # enabled: xxx 开启根据微服务名称自动转发,与服务发现组件进行结合，通过 serviceId(必须设置成大写) 转发到具体的服务实例。
@@ -37,10 +40,17 @@ spring:
             - Path=/sct-sys/**
 #          filters: # 去掉部分URL路径
 #            - StripPrefix=1
+#          metadata: #针对于当前路由的http超时时间设置，（如果同时设置全局超时时间，以自己路由超时时间设置的为准）
+#            response-timeout: : 2000 #响应超时
+#            connect-timeout: 2000 #连接超时
         - id: sct-auth
           uri: lb://sct-auth
           predicates:
             - Path=/sct-auth/**
+        - id: sct-product
+          uri: lb://sct-product
+          predicates:
+            - Path=/sct-product/**
   security:
     oauth2:
       resourceserver:
@@ -66,10 +76,6 @@ security:
       - "/sct-auth/rsa/publicKey"
       - "/sct-sys/user/login"
       - "/sct-auth/oauth/demo"
-
-ribbon:
-  ConnectTimeout: 1000 #请求连接超时时间(ms)
-  ReadTimeout: 1000 #请求处理的超时时间(ms)
-  OkToRetryOnAllOperations: true #true:对所有请求(包括GET)都进行重试
-  MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
-  MaxAutoRetries: 0 # 对当前实例的重试次数
+      - "/sct-product/product/demo"
+      - "/sct-sys/demo/lb"
+      - "/sct-sys/demo/plb"
