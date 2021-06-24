@@ -1,6 +1,6 @@
 #服务名、端口配置
 server:
-  port: 5006
+  port: 5003
   servlet:
     context-path: /sct-product
 

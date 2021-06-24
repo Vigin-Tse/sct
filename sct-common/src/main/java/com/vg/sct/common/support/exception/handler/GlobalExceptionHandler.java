@@ -19,16 +19,19 @@ public class GlobalExceptionHandler {
     //@ExceptionHandler必须要求该方法必须要和出现问题的控制器在一个类中才能生效.(通过RestControllerAdvice注解可以应用到所有controller中)
     @ExceptionHandler(AuthException.class)
     public HttpResponse authExceptionHandler(AuthException e){
+        e.printStackTrace();
         return HttpResponseConvert.failure(e.getMessage());
     }
 
     @ExceptionHandler(BusinessException.class)
     public HttpResponse businessExceptionHandler(BusinessException e){
+        e.printStackTrace();
         return HttpResponseConvert.failure(e.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     public HttpResponse exceptionHandler(Exception e){
+        e.printStackTrace();
         return HttpResponseConvert.failure(e.getMessage());
     }
 }

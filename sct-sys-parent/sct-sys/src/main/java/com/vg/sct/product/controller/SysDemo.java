@@ -2,11 +2,14 @@ package com.vg.sct.product.controller;
 
 import com.vg.sct.common.support.http.HttpResponse;
 import com.vg.sct.feign.auth.api.OauthFeignApi;
-import com.vg.sct.feign.product.ProductFeignApi;
+import com.vg.sct.feign.product.api.ProductFeignApi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author: xieweij
@@ -16,10 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/demo")
 public class SysDemo {
 
-    @Autowired
+    @Resource
     private OauthFeignApi oauthFeignApi;
 
-    @Autowired
+    @Resource
     private ProductFeignApi productFeignApi;
 
     @GetMapping("/lb")
