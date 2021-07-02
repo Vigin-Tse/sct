@@ -1,6 +1,7 @@
 package com.vg.sct.product.controller;
 
 import com.vg.sct.common.support.http.HttpResponse;
+import com.vg.sct.common.support.http.HttpResponseConvert;
 import com.vg.sct.feign.auth.api.OauthFeignApi;
 import com.vg.sct.feign.product.api.ProductFeignApi;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,8 @@ public class SysDemo {
 
     @GetMapping("/lb")
     public HttpResponse demo(){
-        return oauthFeignApi.demo();
+//        return oauthFeignApi.demo();
+        return HttpResponseConvert.success("成功");
     }
 
     @GetMapping("/plb")
