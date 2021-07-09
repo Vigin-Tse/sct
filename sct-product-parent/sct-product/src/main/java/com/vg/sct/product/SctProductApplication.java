@@ -3,7 +3,6 @@ package com.vg.sct.product;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
@@ -16,7 +15,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  *
  * @EnableJpaAuditing：开启jpa审计监听功能，回填特殊字段
  */
-@EnableEurekaClient
+//@EnableEurekaClient
 @EntityScan("com.vg.sct")
 @EnableFeignClients(basePackages = "com.vg.sct")
 @EnableJpaAuditing

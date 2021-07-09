@@ -9,6 +9,10 @@ spring:
     active: sit #运行环境
   application:
     name: sct-auth
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
   datasource:
     username: ${sct.db.username}
     password: ${sct.db.password}

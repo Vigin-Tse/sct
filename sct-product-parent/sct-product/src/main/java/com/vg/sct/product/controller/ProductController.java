@@ -22,8 +22,9 @@ public class ProductController {
 
     @GetMapping("/demo")
     public HttpResponse demo() throws InterruptedException {
-        Thread.sleep(3000);
-        log.info("远程调用接口：demo-{}", port);
+        log.info("远程调用接口：demo-{},进入等待", port);
+        Thread.sleep(4500);
+        log.info("远程调用接口：demo-{}，等待结束", port);
         int i = 1/0;
         return HttpResponseConvert.success("远程调用接口：demo-" + port);
     }

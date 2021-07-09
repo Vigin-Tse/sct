@@ -10,6 +10,10 @@ spring:
     active: sit #运行环境
   application:
     name: sct-sys
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
   datasource:
     username: ${sct.db.username}
     password: ${sct.db.password}
@@ -66,10 +70,10 @@ ribbon:
   #请求次数 = MaxAutoRetries + MaxAutoRetriesNextServer + (MaxAutoRetries * MaxAutoRetiresNextServer) + 1
 
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8000/eureka #注册地址
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8000/eureka #注册地址
 
 #日志
 logging:

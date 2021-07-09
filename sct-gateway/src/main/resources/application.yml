@@ -5,10 +5,10 @@ server:
 #    context-path : /sct-gateway
 
 #注册中心配置
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8000/eureka #注册地址
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8000/eureka #注册地址
 
 #日志
 logging:
@@ -22,6 +22,9 @@ spring:
   application:
     name: sct-gateway
   cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
     gateway:
       httpclient: #gateway全局超时设置
         connect-timeout: 10000 #默认为毫秒单位 connect-timeout 默认为45s
