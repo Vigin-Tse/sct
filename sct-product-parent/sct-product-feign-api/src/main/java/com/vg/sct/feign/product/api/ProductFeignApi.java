@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * 调用远程服务
  */
-@FeignClient(name = "sct-product", path = "/sct-product/product", fallback = ProductFeignFallBack.class)
+@FeignClient(contextId = "productFeignApi", name = "sct-product", path = "/sct-product/product", fallback = ProductFeignFallBack.class)
 public interface ProductFeignApi {
 
     @GetMapping("/demo")

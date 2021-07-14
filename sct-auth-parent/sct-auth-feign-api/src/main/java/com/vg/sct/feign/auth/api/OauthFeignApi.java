@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * 调用远程服务
  */
-@FeignClient(name = "sct-auth", path = "/sct-auth/oauth")
+@FeignClient(contextId = "oauthFeignApi", name = "sct-auth", path = "/sct-auth/oauth")
 public interface OauthFeignApi {
 
     /**

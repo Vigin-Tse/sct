@@ -1,4 +1,4 @@
-package com.vg.sct.order;
+package com.vg.sct.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,11 +19,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EntityScan("com.vg.sct")
 @EnableFeignClients(basePackages = "com.vg.sct")
 @EnableJpaAuditing
-@SpringBootApplication(scanBasePackages = "com.vg.sct")
-public class SctOrderApplication {
+@SpringBootApplication
+public class SctProductApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SctOrderApplication.class, args);
+        SpringApplication.run(SctProductApplication.class, args);
     }
 
 }

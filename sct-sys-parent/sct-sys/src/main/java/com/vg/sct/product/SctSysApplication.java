@@ -1,4 +1,4 @@
-package com.vg.sct.order;
+package com.vg.sct.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,11 +19,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EntityScan("com.vg.sct")
 @EnableFeignClients(basePackages = "com.vg.sct")
 @EnableJpaAuditing
-@SpringBootApplication(scanBasePackages = "com.vg.sct")
-public class SctOrderApplication {
+@SpringBootApplication(scanBasePackages = "com.vg.sct") //scanBasePackages属性后不会走默认扫描主类当前包及子包的逻辑，而是认定只扫描自定义配置的包路径，所以如果自定义了包路径
+public class SctSysApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SctOrderApplication.class, args);
+        SpringApplication.run(SctSysApplication.class, args);
     }
 
 }
