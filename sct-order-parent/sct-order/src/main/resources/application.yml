@@ -1,0 +1,90 @@
+#服务名、端口配置
+server:
+  port: 5005
+  servlet:
+    context-path: /sct-order
+
+#数据库连接配置
+spring:
+  profiles:
+    active: sit #运行环境
+  application:
+    name: sct-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    username: ${sct.db.username}
+    password: ${sct.db.password}
+    url: jdbc:mysql://${sct.db.address}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Hongkong&usessl=true&useOldAliasMetadataBehavior=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid: #如果使用 druid-springboot-starter 可在配置文件直接配置druid相关属性
+      initial-size: 1 #初始化连接大小
+      max-active: 10 #最大连接数
+      min-idle: 1   #最小空闲连接数
+      max-wait: 60000 #配置获取连接等待超时的时间(毫秒)
+      pool-prepared-statements: false #是否缓存PreparedStatement. PSCache对支持游标的数据库性能提升巨大，比如说oracle.在mysql下建议关闭.
+      max-pool-prepared-statement-per-connection-size: 20 #每个连接上PSCache的大小
+      validation-query: SELECT 'x' #用来检测连接是否有效的sql
+      validation-query-timeout: 10 #指定连接校验查询的超时时间
+      test-on-borrow: true #当从连接池借用连接时，是否测试该连接
+      test-on-return: false #在连接归还到连接池时是否测试该连接
+      test-while-idle: false #当连接空闲时，是否执行连接测试
+  jpa:
+    database: MySQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      # create：每次运行程序时，都会重新创建表，故而数据会丢失
+      # create-drop：每次运行程序时会先创建表结构，然后待程序结束时清空表
+      # upadte：每次运行程序，没有表时会创建表，如果对象发生改变会更新表结构，原有数据不会清空，只会更新（推荐使用）
+      # validate：运行程序会校验数据与数据库的字段类型是否相同，字段不同会报错
+      # none: 禁用DDL处理
+      ddl-auto: none
+  redis:
+    host: ${sct.redis.host}
+    port: ${sct.redis.port}
+    password: ${sct.redis.password}
+    database: 0  #操作第几个库
+    jedis:
+      pool:
+        max-active: 10 #最大连接数
+        max-wait: 6000ms #等待时间
+        max-idle: 8 #最大空闲数
+        min-idle: 3 #初始化最小数
+
+#如何配置好Hystrix和Ribbon的超时时间呢？
+#Feign的请求：其实是Hystrix+Ribbon。Hystrix在最外层，然后再到Ribbon，最后里面的是http请求。
+#所以说。Hystrix的熔断时间必须大于Ribbon的 ( ConnectTimeout + ReadTimeout )。
+#而如果Ribbon开启了重试机制，还需要乘以对应的重试次数，保证在Ribbon里的请求还没结束时，Hystrix的熔断时间不会超时。
+#配置ribbon 负载策略
+ribbon:
+  ConnectTimeout: 5000 #请求连接超时时间(ms)
+  ReadTimeout: 5000 #请求处理的超时时间(ms)
+  OkToRetryOnAllOperations: true #true:对所有请求(包括GET)都进行重试
+  MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
+  MaxAutoRetries: 0 # 对当前实例的重试次数
+  #请求次数 = MaxAutoRetries + MaxAutoRetriesNextServer + (MaxAutoRetries * MaxAutoRetiresNextServer) + 1
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8000/eureka #注册地址
+
+#日志
+logging:
+  level:
+    root: info
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+sct:
+  db:
+    adress: localhost/dbname
+    username: admin
+    password: admin123
+  redis:
+    host: localhost
+    port: 8089
+    password: admin123

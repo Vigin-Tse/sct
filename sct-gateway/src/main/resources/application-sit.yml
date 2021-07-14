@@ -3,3 +3,9 @@ sct:
     host: 47.106.105.217
     port: 9004
     password: Vigin123
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        group: scart_sit_group

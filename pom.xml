@@ -16,8 +16,10 @@
         <module>sct-auth-parent</module>
         <module>sct-sys-parent</module>
         <module>sct-product-parent</module>
-        <module>sct-order</module>
+        <module>sct-order-parent</module>
+        <module>sct-account-parent</module>
         <module>sct-gateway</module>
+
     </modules>
 
     <parent>

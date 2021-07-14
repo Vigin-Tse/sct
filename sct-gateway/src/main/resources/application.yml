@@ -54,6 +54,14 @@ spring:
           uri: lb://sct-product
           predicates:
             - Path=/sct-product/**
+        - id: sct-account
+          uri: lb://sct-account
+          predicates:
+            - Path=/sct-account/**
+        - id: sct-order
+          uri: lb://sct-order
+          predicates:
+            - Path=/sct-order/**
   security:
     oauth2:
       resourceserver:
