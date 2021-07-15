@@ -19,9 +19,33 @@ public class BizSeataOrderController {
     @Autowired
     private BizSeataOrderService orderService;
 
+    /**
+     * 分布式不加事务测试
+     * @return
+     */
     @GetMapping("/notranscation/order")
     public HttpResponse notranscationOrder(){
         this.orderService.createOrderWithNoTransaction();
+        return HttpResponseConvert.success(null);
+    }
+
+    /**
+     * 分布式事务seata测试
+     * @return
+     */
+    @GetMapping("/seatatransacation/order")
+    public HttpResponse seatatransacation(){
+        this.orderService.createOrderWithSeata();
+        return HttpResponseConvert.success(null);
+    }
+
+    /**
+     * 本地事务Transaction测试
+     * @return
+     */
+    @GetMapping("/localtransacation/order")
+    public HttpResponse localtransacation(){
+        this.orderService.localTransaction();
         return HttpResponseConvert.success(null);
     }
 }

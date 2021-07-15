@@ -16,4 +16,6 @@ public interface BizSeataOrderService {
      * 模拟分布式系统下，使用seata作事务管理
      */
     void createOrderWithSeata();
+
+    void localTransaction();
 }
