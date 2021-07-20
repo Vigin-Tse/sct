@@ -3,15 +3,12 @@ package com.vg.sct.order.service.Impl;
 import com.vg.sct.feign.account.api.AccSeataAccountFeignApi;
 import com.vg.sct.feign.product.api.ProSeataStorageFeignApi;
 import com.vg.sct.order.domain.model.BizSeataOrderModel;
-import com.vg.sct.order.domain.model.BizSeataOrderTempModel;
 import com.vg.sct.order.repository.BizSeataOrderRepository;
-import com.vg.sct.order.repository.BizSeataOrderTempRepository;
 import com.vg.sct.order.service.BizSeataOrderService;
 import com.vg.sct.order.service.BizSeataOrderTempService;
 import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
