@@ -78,7 +78,8 @@ ribbon:
 #日志
 logging:
   level:
-    root: info
+    root: debug
+
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
 sct:
