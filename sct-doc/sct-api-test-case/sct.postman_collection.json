@@ -1,0 +1,1280 @@
+{
+	"info": {
+		"_postman_id": "5713baaf-58cd-4476-af78-18c8751b1a6c",
+		"name": "sct",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "gateway",
+			"item": [
+				{
+					"name": "sys",
+					"item": [
+						{
+							"name": "登录",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\":\"weijin\",\r\n    \"password\":\"abc@1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5000/sct-sys/user/login",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"sct-sys",
+										"user",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "获取用户信息 /user/userinfo",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZV9ubyI6IjE5MjE5IiwidXNlcl9pZCI6MzAsInVzZXJfbmFtZSI6IndlaWppbiIsInNjb3BlIjpbImFsbCJdLCJuaWNrX25hbWUiOiLlm7Tlt74t5bCP5Y-3IiwiZXhwIjoxNjI1ODEzMzk1LCJ3eF9pZCI6bnVsbCwianRpIjoiNjZhZDYzMDUtNDM4Yi00Y2UwLTg2ZGMtZDI0YWEzNjg5ZTQ2IiwiZW1haWwiOiIxOTIxOUBxcS5jb20iLCJjbGllbnRfaWQiOiJTQ1RfV0VCIn0.MzdeUxbyqVG8ZpPgthQnnxao6A07SvJ4r-m33t-lXkcDR6vp42Xsrk83m0kLS_sMZWOUwyo2uC9qJ5SeI4Pj409i5mNvts1yS-2SV9Nz3LeoNZq_2Sz9qd03894f9-QGf8-ymG7g4ViM9eiV1_1e0pIQCJE_aJTBmt5pln0Pb6apZeAQ3cBYHa_oYiAXpddnCQpeN6wQN0QUilxTLPGOxVz4tTQ4FaOHMecpJWFwKbAJMmU4beBbIHphzbfc8m1PCJRpxgiMQyIk9QCO_nhrSbBe3V0YAbtLbttDuAwILiYlEomlUjW7Hg7ZqjZKroQHOx87_6lKjf8aK2Y3RIsUEA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "userId",
+											"value": "30",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5000/sct-sys/user/userinfo",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"sct-sys",
+										"user",
+										"userinfo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "新建用户信息 /user/add",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZV9ubyI6IjE5MjE5IiwidXNlcl9pZCI6MzAsInVzZXJfbmFtZSI6IndlaWppbiIsInNjb3BlIjpbImFsbCJdLCJuaWNrX25hbWUiOiLlm7Tlt74t5bCP5Y-3IiwiZXhwIjoxNjIwOTcyNzY5LCJ3eF9pZCI6bnVsbCwianRpIjoiZTI0YjYxZDQtMWIzNy00MmUxLWIzYzctMjBkODBjYzIxNDczIiwiZW1haWwiOiIxOTIxOUBxcS5jb20iLCJjbGllbnRfaWQiOiJTQ1RfV0VCIn0.AiSgGPhfb5Y6K27P0aZDaGGO2sWEWG56fYKX_mY9TzFOwl_bGD_mcHjs25K9EUvbXDh-yeJ_Iqy-KFJI4EyJfMzFLauGFt1Ax_h_CPLrFOQiYyWIvfEWt3mISy7hUB9I0d5nk_aEHfJ0wDq9Um9_fZlzHYzp-nVu2SEt66JR46th4JnLsm-7ZyjDMVQ9pZZLTYuaU6iBJMB5Q1QfZ0FJy0h99bUAuKbw1IsyCHWQvsgT0wzgi6YPM57Igtu8bPKWZ94FTagrUT6FBIZPyUoYMOppAYoQ-P614X-FGUgjqH-YNBix_549tsX8QuWGq0fxymQWNpj4J-t3kj41zmfNSA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\" : \"weijin02\",\r\n    \"nickName\": \"围巾02\",\r\n    \"phoneNo\" : 192192,\r\n    \"email\" : \"192192@qq.com\"\r\n}   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5000/sct-sys/user/add",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"sct-sys",
+										"user",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "修改用户信息 /user/update",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZV9ubyI6IjE5MjE5IiwidXNlcl9pZCI6MzAsInVzZXJfbmFtZSI6IndlaWppbiIsInNjb3BlIjpbImFsbCJdLCJuaWNrX25hbWUiOiLlm7Tlt74iLCJleHAiOjE2MjA5NzE4MDcsInd4X2lkIjpudWxsLCJqdGkiOiI3M2YyZmJhMi1jMzNiLTRkZTAtOWU1ZS1hYjdhZjA5MTMxYmEiLCJlbWFpbCI6IjE5MjE5QHFxLmNvbSIsImNsaWVudF9pZCI6IlNDVF9XRUIifQ.cROLTqn4HdXW_exw15s6v4cRvqxAwNqUfpKHpGqBkSQlg38MprM7B_VA7rPqaO774Fnw5RGdpD1I4aZvOPTAkMOTHgXPdG-Sn18EcMlKQQe1Tqa7KoW4sfcpZBVEkm6kuAUeEKZTMzZYElptBh6Zn-DZotIMyG5OlZrADCpbDZ6QfQY6uFgOxDzn-HbtHgtHQb33VVPJ1Hvd62RSiBCxknQqA9gIlD1hXKGX8WGUBL5P2k9H1dwIEckUNOUlqFIFG-TyRZ8D096A9NkLWTUMJusmYL2nmIDnpfgcPqxx3W9nYfHMSdIX-gzCownEu3BD4sn9JqSony7wAr85jeJBNg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\" : 30,\r\n    \"userName\" : \"weijin\",\r\n    \"nickName\": \"围巾-小号\",\r\n    \"phoneNo\" : 19219,\r\n    \"email\" : \"19219@qq.com\"\r\n}   ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5000/sct-sys/user/update",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"sct-sys",
+										"user",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "测试负载超时 auth",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/sct-sys/demo/lb",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"sct-sys",
+										"demo",
+										"lb"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "测试负载超时 product",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/sct-sys/demo/plb",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"sct-sys",
+										"demo",
+										"plb"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "password模式获取token（body form）",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Access-Control-Allow-Origin",
+										"value": "*",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "leno",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "sct@2021",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "SCT_WEB",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/sct-auth/oauth/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"sct-auth",
+										"oauth",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "获取用户信息 /user/userinfo",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxNDk0MDIwOSwianRpIjoiYzdlNWFkZDktMWExYS00ZGUzLTkyZDItOWVlN2IxNmQ4ZDg5IiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.VwgMdMI58lEylHV4szIfYyuzF8FGSA5CP0I_KqTApJTQ4Bjp_lq970Zf_2BZeyiExkBMlZZ_QbUn6FyDY-1alMKiMdhzGEqiSUjalbTtR4pTxgl1HMp5g1Hy0CeiRxRi2R4Gct4xmXfHHiiouN79ZFNOJyWy2SzyPf8_OOwXPpOqElkAa8AMM5yTSZNBT126g0jeedFkdTlKQ6IhDV9psnres0YHVp29tfMlG8lPnplIotRxLYuXkKLLRawgYEvdwM9V4WAD6NjczIkxvoqMvj61rgqO61KuwjasGUiYdjpgZIyJIatm_LR0eS05xFL1US-uD3dPJEGQCxitBNlx9AB",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "userId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:5000/sct-sys/user/userinfo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"sct-sys",
+										"user",
+										"userinfo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "获取受保护资源",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxNDE2MDU0OCwianRpIjoiNDM3YzdkMzAtNmIyOS00MmU3LWFkZjMtZjAyMDgwZTVmMmUxIiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.XwQ30AHLqXBksDO6DuTI2gW7s5cJcu6kh_bhbopaJ7fx0GokIM4useJm7x_RlUmURLQdWUtSatsAeIGwyiXQRKI56raOx9NZt2kOmpiF70W8BhhK-3HbxM63oaAxKGvfQpw5SX3ntO2wqVXLiSHsV5YDaOgW_Ibeef9NUKzJDE6ac8vOaqmA4VExNJu25Pn4r4oC3lbi4ovhk43RH26hUKIMgaSj-F5L9m6EDCAFCi-ImzKRTbuEQRPFEYCE5w7t9hTJ9y1VVrYOHuUGnR7Nqsrcz4Gl_5lwOH3SeYFinDg6nsgr080stsXPkdQEiIzE6VCnY-dvivNiZ0oFcqTJWg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:5000/sct-auth/rs/demo",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"sct-auth",
+										"rs",
+										"demo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "获取受保护资源2",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxMjc1MjQzNSwianRpIjoiNmQyYjE4YjUtMTU2Zi00MzQxLTg3ZmQtNzAzMWUzYzQzNjcxIiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.SCc2qyPdIhKTaftUSampIrF0EJPoAPGp-hl5igCwnO4",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "localhost:5000/sct-auth/rs2/demo",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"sct-auth",
+										"rs2",
+										"demo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "获取rsa公钥",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxNDE2MDU0OCwianRpIjoiNDM3YzdkMzAtNmIyOS00MmU3LWFkZjMtZjAyMDgwZTVmMmUxIiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.XwQ30AHLqXBksDO6DuTI2gW7s5cJcu6kh_bhbopaJ7fx0GokIM4useJm7x_RlUmURLQdWUtSatsAeIGwyiXQRKI56raOx9NZt2kOmpiF70W8BhhK-3HbxM63oaAxKGvfQpw5SX3ntO2wqVXLiSHsV5YDaOgW_Ibeef9NUKzJDE6ac8vOaqmA4VExNJu25Pn4r4oC3lbi4ovhk43RH26hUKIMgaSj-F5L9m6EDCAFCi-ImzKRTbuEQRPFEYCE5w7t9hTJ9y1VVrYOHuUGnR7Nqsrcz4Gl_5lwOH3SeYFinDg6nsgr080stsXPkdQEiIzE6VCnY-dvivNiZ0oFcqTJWg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:5000/sct-auth/rsa/publicKey",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"sct-auth",
+										"rsa",
+										"publicKey"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "测试负载超时-auth",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/sct-auth/oauth/demo",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"sct-auth",
+										"oauth",
+										"demo"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "product",
+					"item": [
+						{
+							"name": "测试负载超时-product",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/sct-product/product/demo",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"sct-product",
+										"product",
+										"demo"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "获取授权码获取token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/sct-auth/oauth/token?grant_type=authorization_code&code=oPBv1W&client_id=SCT_WEB&redirect_uri=http://www.baidu.com&scope=all&client_secret=sct@2021",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"sct-auth",
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "authorization_code"
+								},
+								{
+									"key": "code",
+									"value": "oPBv1W"
+								},
+								{
+									"key": "client_id",
+									"value": "SCT_WEB"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://www.baidu.com"
+								},
+								{
+									"key": "scope",
+									"value": "all"
+								},
+								{
+									"key": "client_secret",
+									"value": "sct@2021"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "password模式获取token（query params）",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:5001/sct-auth/oauth/token?username=leno&password=123456&grant_type=password&client_secret=sct@2021&client_id=SCT_WEB",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"sct-auth",
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "leno"
+								},
+								{
+									"key": "password",
+									"value": "123456"
+								},
+								{
+									"key": "grant_type",
+									"value": "password"
+								},
+								{
+									"key": "client_secret",
+									"value": "sct@2021"
+								},
+								{
+									"key": "client_id",
+									"value": "SCT_WEB"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "password模式获取token（body form）",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "leno",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "SCT_WEB",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "sct@2021",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/sct-auth/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"sct-auth",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "校验token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxNDA2OTkyOCwianRpIjoiODhjOTA2ZjMtN2JhZS00YzYzLWFiOTMtNjA4YTA0ZTM4MGY1IiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.SxGG9W3AhYm5_7dQnAdVRIrOpCfgcrbfn0vMOF77AJY",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "sct@2021",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/sct-auth/oauth/check_token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"sct-auth",
+								"oauth",
+								"check_token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取公钥",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxMjY4MzEwNiwianRpIjoiODQ5MmRmM2YtZDViZC00NzhmLWI4ZWItOWY4M2RjMmMwZTVlIiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.Efvt84IJUvrc9pLlv7-YnGO4kSILlTxVAnF3bVXthjQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxMjY4MzEwNiwianRpIjoiODQ5MmRmM2YtZDViZC00NzhmLWI4ZWItOWY4M2RjMmMwZTVlIiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.Efvt84IJUvrc9pLlv7-YnGO4kSILlTxVAnF3bVXthjQ",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5001/sct-auth/oauth/token_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"sct-auth",
+								"oauth",
+								"token_key"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取授权码",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/sct-auth/oauth/authorize?response_type=code&client_id=SCT_WEB",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"sct-auth",
+								"oauth",
+								"authorize"
+							],
+							"query": [
+								{
+									"key": "response_type",
+									"value": "code"
+								},
+								{
+									"key": "client_id",
+									"value": "SCT_WEB"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://www.baidu.com",
+									"disabled": true
+								},
+								{
+									"key": "scope",
+									"value": "all",
+									"disabled": true
+								},
+								{
+									"key": "state",
+									"value": "normal",
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": "leno",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取受保护资源",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxNDk0MDIwOSwianRpIjoiYzdlNWFkZDktMWExYS00ZGUzLTkyZDItOWVlN2IxNmQ4ZDg5IiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.VwgMdMI58lEylHV4szIfYyuzF8FGSA5CP0I_KqTApJTQ4Bjp_lq970Zf_2BZeyiExkBMlZZ_QbUn6FyDY-1alMKiMdhzGEqiSUjalbTtR4pTxgl1HMp5g1Hy0CeiRxRi2R4Gct4xmXfHHiiouN79ZFNOJyWy2SzyPf8_OOwXPpOqElkAa8AMM5yTSZNBT126g0jeedFkdTlKQ6IhDV9psnres0YHVp29tfMlG8lPnplIotRxLYuXkKLLRawgYEvdwM9V4WAD6NjczIkxvoqMvj61rgqO61KuwjasGUiYdjpgZIyJIatm_LR0eS05xFL1US-uD3dPJEGQCxitBNlx9A",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5001/sct-auth/rs/demo",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"sct-auth",
+								"rs",
+								"demo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取受保护资源2",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxMjc1MjQzNSwianRpIjoiNmQyYjE4YjUtMTU2Zi00MzQxLTg3ZmQtNzAzMWUzYzQzNjcxIiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.SCc2qyPdIhKTaftUSampIrF0EJPoAPGp-hl5igCwnO4",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:5001/sct-auth/rs2/demo",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"sct-auth",
+								"rs2",
+								"demo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取rsa公钥",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxNDE2MDU0OCwianRpIjoiNDM3YzdkMzAtNmIyOS00MmU3LWFkZjMtZjAyMDgwZTVmMmUxIiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.XwQ30AHLqXBksDO6DuTI2gW7s5cJcu6kh_bhbopaJ7fx0GokIM4useJm7x_RlUmURLQdWUtSatsAeIGwyiXQRKI56raOx9NZt2kOmpiF70W8BhhK-3HbxM63oaAxKGvfQpw5SX3ntO2wqVXLiSHsV5YDaOgW_Ibeef9NUKzJDE6ac8vOaqmA4VExNJu25Pn4r4oC3lbi4ovhk43RH26hUKIMgaSj-F5L9m6EDCAFCi-ImzKRTbuEQRPFEYCE5w7t9hTJ9y1VVrYOHuUGnR7Nqsrcz4Gl_5lwOH3SeYFinDg6nsgr080stsXPkdQEiIzE6VCnY-dvivNiZ0oFcqTJWg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5001/sct-auth/rsa/publicKey",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"sct-auth",
+								"rsa",
+								"publicKey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "测试负载",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5001/sct-auth/oauth/demo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"sct-auth",
+								"oauth",
+								"demo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "path",
+			"item": [
+				{
+					"name": "登录",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\":\"suqianli\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5002/sct-sys/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "5002",
+							"path": [
+								"sct-sys",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "测试负载超时 auth",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5002/sct-sys/demo/lb",
+							"host": [
+								"localhost"
+							],
+							"port": "5002",
+							"path": [
+								"sct-sys",
+								"demo",
+								"lb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取用户信息 /user/userinfo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "userId",
+									"value": "1",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5002/sct-sys/user/userinfo",
+							"host": [
+								"localhost"
+							],
+							"port": "5002",
+							"path": [
+								"sct-sys",
+								"user",
+								"userinfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "测试负载超时 product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5002/sct-sys/demo/plb",
+							"host": [
+								"localhost"
+							],
+							"port": "5002",
+							"path": [
+								"sct-sys",
+								"demo",
+								"plb"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "xxxx",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "提供给调度中心调用接口的测试-get",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "get",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "15",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5002/sct-sys/job/get",
+							"host": [
+								"localhost"
+							],
+							"port": "5002",
+							"path": [
+								"sct-sys",
+								"job",
+								"get"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "小米",
+									"disabled": true
+								},
+								{
+									"key": "age",
+									"value": "15",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "提供给调度中心调用接口的测试-post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"i am post\",\r\n    \"age\" : 27\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://10.10.22.38:5002/sct-sys/job/post",
+							"protocol": "http",
+							"host": [
+								"10",
+								"10",
+								"22",
+								"38"
+							],
+							"port": "5002",
+							"path": [
+								"sct-sys",
+								"job",
+								"post"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "小米",
+									"disabled": true
+								},
+								{
+									"key": "age",
+									"value": "15",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "acc",
+			"item": [
+				{
+					"name": "扣减余额",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5004/sct-account/seata/debit?userId=1&payMoney=10.00",
+							"host": [
+								"localhost"
+							],
+							"port": "5004",
+							"path": [
+								"sct-account",
+								"seata",
+								"debit"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "payMoney",
+									"value": "10.00"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "无事务管理 下单-扣减库存-扣减余额",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5005/sct-order/seata/notranscation/order",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"sct-order",
+								"seata",
+								"notranscation",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seata事务管理 下单-扣减库存-扣减余额",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5005/sct-order/seata/seatatransacation/order",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"sct-order",
+								"seata",
+								"seatatransacation",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seata框架下本地事务管理测试",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5005/sct-order/seata/localtransacation/order",
+							"host": [
+								"localhost"
+							],
+							"port": "5005",
+							"path": [
+								"sct-order",
+								"seata",
+								"localtransacation",
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "job",
+			"item": [
+				{
+					"name": "定时任务日志列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5006/sct-job/job/logs",
+							"host": [
+								"localhost"
+							],
+							"port": "5006",
+							"path": [
+								"sct-job",
+								"job",
+								"logs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "定时任务列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5006/sct-job/job/jobs",
+							"host": [
+								"localhost"
+							],
+							"port": "5006",
+							"path": [
+								"sct-job",
+								"job",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "添加cron定时任务-post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"jobName\": \"sys-job-post\",\r\n\t\"jobDescription\": \"sys服务post接口测试\",\r\n\t\"cronExpression\": \"0/5 * * * * ? *\",\r\n\t\"data\": {\r\n\t\t\"serviceId\": \"sct-sys\",\r\n\t\t\"method\": \"POST\",\r\n\t\t\"path\": \"/job/get\",\r\n\t\t\"contentType\": \"application/json\",\r\n\t\t\"body\": {\r\n\t\t\t\"name\": \"post\",\r\n\t\t\t\"age\": 27\r\n\t\t}\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5006/sct-job/job/add",
+							"host": [
+								"localhost"
+							],
+							"port": "5006",
+							"path": [
+								"sct-job",
+								"job",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除任务",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "jobName",
+									"value": "sys-job-get",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5006/sct-job/job/delete/sys-job-post",
+							"host": [
+								"localhost"
+							],
+							"port": "5006",
+							"path": [
+								"sct-job",
+								"job",
+								"delete",
+								"sys-job-post"
+							],
+							"query": [
+								{
+									"key": "jobName",
+									"value": "sys-job-get",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

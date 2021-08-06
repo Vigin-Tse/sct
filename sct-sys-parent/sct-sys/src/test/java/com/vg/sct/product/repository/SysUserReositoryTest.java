@@ -2,6 +2,7 @@ package com.vg.sct.product.repository;
 
 import com.alibaba.fastjson.JSON;
 import com.vg.sct.common.domain.model.sys.SysUserModel;
+import com.vg.sct.sys.repository.SysUserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

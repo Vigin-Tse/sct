@@ -26,6 +26,11 @@ public class HttpResponse<T> implements Serializable {
     private String msg;
 
     /**
+     * 分页信息
+     */
+    private PageInfo pageInfo;
+
+    /**
      * 返回数据
      */
     private T data;
@@ -41,6 +46,13 @@ public class HttpResponse<T> implements Serializable {
         this.code = code;
         this.msg = msg;
         this.data = data;
+    }
+
+    public HttpResponse(String code, String msg, T data, PageInfo pageInfo){
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+        this.pageInfo = pageInfo;
     }
 
 }

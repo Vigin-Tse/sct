@@ -12,5 +12,7 @@ import lombok.Setter;
 @Getter
 public class HttpRequest<T> {
 
+    private PageInfo pageInfo;
+
     private T body;
 }

@@ -18,6 +18,7 @@
         <module>sct-product-parent</module>
         <module>sct-order-parent</module>
         <module>sct-account-parent</module>
+        <module>sct-job-parent</module>
         <module>sct-gateway</module>
 
     </modules>

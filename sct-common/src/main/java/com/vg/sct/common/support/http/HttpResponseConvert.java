@@ -6,26 +6,37 @@ package com.vg.sct.common.support.http;
  * @create: 2020-12-30 16:56
  **/
 public class HttpResponseConvert {
-
-
-    public static HttpResponse success(String msg){
-        return new HttpResponse(HttpResponseEnum.SUCCESS.getCode(), msg);
+    public static <T> HttpResponse success(){
+        return success(HttpResponseEnum.SUCCESS.getCode(), HttpResponseEnum.SUCCESS.getMsg(), null, null);
     }
 
     public static <T> HttpResponse success(T data){
-        return new HttpResponse(HttpResponseEnum.SUCCESS.getCode(), HttpResponseEnum.SUCCESS.getMsg(), data);
+        return success(HttpResponseEnum.SUCCESS.getCode(), HttpResponseEnum.SUCCESS.getMsg(), data, null);
     }
 
+    public static <T> HttpResponse success(T data, PageInfo pageInfo){
+        return success(HttpResponseEnum.SUCCESS.getCode(), HttpResponseEnum.SUCCESS.getMsg(), data, pageInfo);
+    }
+
+
     public static <T> HttpResponse success(String msg, T data){
-        return new HttpResponse(HttpResponseEnum.SUCCESS.getCode(), msg, data);
+        return success(HttpResponseEnum.SUCCESS.getCode(), msg, data, null);
+    }
+
+    public static <T> HttpResponse success(String msg, T data, PageInfo pageInfo){
+        return success(HttpResponseEnum.SUCCESS.getCode(), msg, data, pageInfo);
     }
 
     public static <T> HttpResponse success(String code, String msg, T data){
-        return new HttpResponse(code, msg, data);
+        return success(code, msg, data, null);
+    }
+
+    public static <T> HttpResponse success(String code, String msg, T data, PageInfo pageInfo){
+        return new HttpResponse(code, msg, data, pageInfo);
     }
 
     public static HttpResponse failure(String msg){
-        return new HttpResponse(HttpResponseEnum.ERROR.getCode(), msg);
+        return failure(HttpResponseEnum.ERROR.getCode(), msg);
     }
 
     public static HttpResponse failure(String code, String msg){

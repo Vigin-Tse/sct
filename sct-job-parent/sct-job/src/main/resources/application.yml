@@ -1,15 +1,15 @@
 #服务名、端口配置
 server:
-  port: 5002
+  port: 5006
   servlet:
-    context-path: /sct-sys
+    context-path: /sct-job
 
 #数据库连接配置
 spring:
   profiles:
     active: sit #运行环境
   application:
-    name: sct-sys
+    name: sct-job
   cloud:
     nacos:
       discovery:
@@ -54,12 +54,33 @@ spring:
         max-wait: 6000ms #等待时间
         max-idle: 8 #最大空闲数
         min-idle: 3 #初始化最小数
+  quartz:
+    job-store-type: jdbc # quartz任务存储类型：jdbc或memory
+    wait-for-jobs-to-complete-on-shutdown: true # 关闭时等待任务完成
+    overwrite-existing-jobs: true # 可以覆盖已有的任务
+    properties: # quartz原生配置
+      org:
+        quartz:
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX # 调度信息存储处理类
+            clusterCheckinInterval: 10000
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate # 使用完全兼容JDBC的驱动
+            isClustered: true
+            tablePrefix: QRTZ_ # quartz相关表前缀
+            useProperties: false # 是否将JobDataMap中的属性转为字符串存储
+        scheduler:
+          instanceId: AUTO # 调度器实例ID自动生成
+          instanceName: sctScheduler # 调度器实例名称
+        threadPool:
+          class: org.quartz.simpl.SimpleThreadPool # 指定线程池实现类，对调度器提供固定大小的线程池
+          threadCount: 10 # 设置并发线程数量
+          threadPriority: 5 # 指定线程优先级
+          threadsInheritContextClassLoaderOfInitializingThread: true
 
 #如何配置好Hystrix和Ribbon的超时时间呢？
 #Feign的请求：其实是Hystrix+Ribbon。Hystrix在最外层，然后再到Ribbon，最后里面的是http请求。
 #所以说。Hystrix的熔断时间必须大于Ribbon的 ( ConnectTimeout + ReadTimeout )。
 #而如果Ribbon开启了重试机制，还需要乘以对应的重试次数，保证在Ribbon里的请求还没结束时，Hystrix的熔断时间不会超时。
-
 #配置ribbon 负载策略
 ribbon:
   ConnectTimeout: 5000 #请求连接超时时间(ms)
@@ -68,7 +89,6 @@ ribbon:
   MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
   MaxAutoRetries: 0 # 对当前实例的重试次数
   #请求次数 = MaxAutoRetries + MaxAutoRetriesNextServer + (MaxAutoRetries * MaxAutoRetiresNextServer) + 1
-
 
 #eureka:
 #  client:
@@ -90,17 +110,3 @@ sct:
     host: localhost
     port: 8089
     password: admin123
-
-feign:
-  hystrix:
-    enabled: true
-
-hystrix:
-  command:
-    default:
-      execution:
-        timeout: true #是否开启超时熔断
-        isolation:
-          thread:
-            timeoutInMilliseconds: 10000 #断路器超时时间，默认1000ms
-          strategy: SEMAPHORE
