@@ -5,6 +5,8 @@ import com.vg.sct.common.support.http.HttpResponseConvert;
 import com.vg.sct.sys.domain.dto.QuartzApiRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 /**
  * 提供给调度中心调用接口的测试
  * @author: xieweij
@@ -26,5 +28,11 @@ public class QuartzApiDemo {
         String str = request.getName() + "，" + request.getAge();
         System.out.println(str);
         return HttpResponseConvert.success(str);
+    }
+
+    @GetMapping("/cget")
+    public HttpResponse get(){
+        System.out.println("I am in");
+        return HttpResponseConvert.success("I am in");
     }
 }

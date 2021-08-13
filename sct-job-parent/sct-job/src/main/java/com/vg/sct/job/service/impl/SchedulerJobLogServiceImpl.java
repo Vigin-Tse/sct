@@ -37,4 +37,5 @@ public class SchedulerJobLogServiceImpl implements SchedulerJobLogService {
     public void addLog(SchedulerJobLogsModel log) {
         logRepository.save(log);
     }
+
 }

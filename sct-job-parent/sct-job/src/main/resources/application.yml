@@ -85,8 +85,8 @@ spring:
 ribbon:
   ConnectTimeout: 5000 #请求连接超时时间(ms)
   ReadTimeout: 5000 #请求处理的超时时间(ms)
-  OkToRetryOnAllOperations: true #true:对所有请求(包括GET)都进行重试
-  MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
+  OkToRetryOnAllOperations: false #true:对所有请求(包括GET)都进行重试
+  MaxAutoRetriesNextServer: 0 # 切换实例的重试次数
   MaxAutoRetries: 0 # 对当前实例的重试次数
   #请求次数 = MaxAutoRetries + MaxAutoRetriesNextServer + (MaxAutoRetries * MaxAutoRetiresNextServer) + 1
 

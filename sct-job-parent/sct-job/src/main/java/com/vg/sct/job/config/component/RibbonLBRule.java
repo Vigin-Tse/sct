@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @author: xieweij
  * @time: 2021/6/9 14:34
  */
-@Component
+//@Component
 public class RibbonLBRule {
 
     /**

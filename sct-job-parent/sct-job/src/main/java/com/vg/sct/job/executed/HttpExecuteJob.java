@@ -15,6 +15,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -44,7 +45,7 @@ public class HttpExecuteJob implements Job {
         String path = dataMap.getString("path");
         String contentType = dataMap.getString("contentType");
         contentType = StringUtils.isBlank(contentType) ? MediaType.APPLICATION_FORM_URLENCODED_VALUE : contentType;
-        Map<String, Object> body = (Map<String, Object>) dataMap.get("body");
+        Map body = (Map) dataMap.get("body");
 
         //获取服务实例
         ServiceInstance serviceInstance = loadBalancerClient.choose(serviceId);
@@ -53,28 +54,34 @@ public class HttpExecuteJob implements Job {
         }
 
         //获取实际请求地址
-        String url = String.format("%s/%s%s", serviceInstance.getUri(), serviceId, path);
+        String url = String.format("http://%s/%s%s", serviceInstance.getServiceId(), "sct-sys", path);
 
-        HttpHeaders headers = new HttpHeaders();//http请求头信息
-        HttpMethod httpMethod = HttpMethod.resolve(method.toUpperCase());
-        HttpEntity requestEntity = null;
+        if (method.toUpperCase().equals("POST")){
 
-        headers.setContentType(MediaType.parseMediaType(contentType));
-        if (contentType.contains(MediaType.APPLICATION_JSON_VALUE)){
+            HttpHeaders headers = new HttpHeaders();//http请求头信息
+            HttpMethod httpMethod = HttpMethod.resolve(method.toUpperCase());
+            HttpEntity requestEntity = null;
+
+            headers.setContentType(MediaType.parseMediaType(contentType));
+
             //json格式
             requestEntity = new HttpEntity(body, headers);
+
+            log.info("Quartz定时调用==> url[{}] method[{}] data=[{}]", url, httpMethod, requestEntity);
+            ResponseEntity result = restTemplate.exchange(url, httpMethod, requestEntity, String.class);
+            log.info("Quartz定时调用结果==> url[{}] method[{}] result=[{}]", url, httpMethod, JSONObject.toJSON(result.getBody()));
         }else{
-            // 表单形式
-            // 封装参数，千万不要替换为Map与HashMap，否则参数无法传递
-            MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
+            Map<String, Object> params = new HashMap<>();
             if (body != null){
-                Map data = JSONObject.parseObject(JSONObject.toJSONString(body), Map.class);
-                params.putAll(params);
-                requestEntity = new HttpEntity(params, headers);
+                params.putAll(body);
             }
+
+            log.info("Quartz定时调用==> url[{}] method[{}] data=[{}]", url, method, JSONObject.toJSONString(params));
+            ResponseEntity<String> result = restTemplate.getForEntity(url, String.class, params);
+            log.info("Quartz定时调用结果==> url[{}] method[{}] result=[{}]", url, method, JSONObject.toJSON(result.getBody()));
         }
-        log.info("Quartz定时调用==> url[{}] method[{}] data=[{}]", url, httpMethod, requestEntity);
-        ResponseEntity result = restTemplate.exchange(url, httpMethod, requestEntity, String.class);
-        log.info("Quartz定时调用结果==> url[{}] method[{}] result=[{}]", url, httpMethod, JSONObject.toJSON(result.getBody()));
+//        log.info("Quartz定时调用==> url[{}] method[{}] data=[{}]", url, httpMethod, requestEntity);
+//        ResponseEntity result = restTemplate.exchange(url, httpMethod, requestEntity, String.class);
+//        log.info("Quartz定时调用结果==> url[{}] method[{}] result=[{}]", url, httpMethod, JSONObject.toJSON(result.getBody()));
     }
 }
