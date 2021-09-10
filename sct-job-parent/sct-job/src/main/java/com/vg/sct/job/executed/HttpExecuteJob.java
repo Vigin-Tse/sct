@@ -54,7 +54,7 @@ public class HttpExecuteJob implements Job {
         }
 
         //获取实际请求地址
-        String url = String.format("http://%s/%s%s", serviceInstance.getServiceId(), "sct-sys", path);
+        String url = String.format("http://%s/%s%s", serviceInstance.getServiceId(), serviceId, path);
 
         if (method.toUpperCase().equals("POST")){
 
