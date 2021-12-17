@@ -6,7 +6,15 @@ import com.nimbusds.jose.JWSVerifier;
 import com.nimbusds.jose.crypto.RSASSAVerifier;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.vg.sct.common.support.exception.AuthException;
+import sun.misc.BASE64Decoder;
 
+import java.io.IOException;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
 import java.text.ParseException;
 
 /**
@@ -16,10 +24,10 @@ import java.text.ParseException;
  **/
 public class NjJwtUtils {
 
-    public static String verifyTokenByRSA(String token, RSAKey rsaKey) throws ParseException, JOSEException {
+    public static String verifyTokenByRSA(String token, RSAPublicKey publicRsaKey) throws ParseException, JOSEException {
         //从token中解析JWS对象
         JWSObject jwsObject = JWSObject.parse(token);
-        RSAKey publicRsaKey = rsaKey.toPublicJWK();
+//        RSAKey publicRsaKey = rsaKey.toPublicJWK();
         //使用RSA公钥创建RSA验证器
         JWSVerifier jwsVerifier = new RSASSAVerifier(publicRsaKey);
         if (!jwsObject.verify(jwsVerifier)) {
@@ -30,11 +38,4 @@ public class NjJwtUtils {
         return payload;
     }
 
-    public static void main(String[] args) throws ParseException {
-        String token ="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJsZW5vIiwic2NvcGUiOlsiYWxsIl0sIm5pY2tfbmFtZSI6IuafoOaqrOeyviIsImV4cCI6MTYxNDE2MDU0OCwianRpIjoiNDM3YzdkMzAtNmIyOS00MmU3LWFkZjMtZjAyMDgwZTVmMmUxIiwiY2xpZW50X2lkIjoiU0NUX1dFQiJ9.XwQ30AHLqXBksDO6DuTI2gW7s5cJcu6kh_bhbopaJ7fx0GokIM4useJm7x_RlUmURLQdWUtSatsAeIGwyiXQRKI56raOx9NZt2kOmpiF70W8BhhK-3HbxM63oaAxKGvfQpw5SX3ntO2wqVXLiSHsV5YDaOgW_Ibeef9NUKzJDE6ac8vOaqmA4VExNJu25Pn4r4oC3lbi4ovhk43RH26hUKIMgaSj-F5L9m6EDCAFCi-ImzKRTbuEQRPFEYCE5w7t9hTJ9y1VVrYOHuUGnR7Nqsrcz4Gl_5lwOH3SeYFinDg6nsgr080stsXPkdQEiIzE6VCnY-dvivNiZ0oFcqTJWg";
-
-        JWSObject jwsObject = JWSObject.parse(token);
-
-        System.out.println(jwsObject.getPayload().toString());
-    }
 }

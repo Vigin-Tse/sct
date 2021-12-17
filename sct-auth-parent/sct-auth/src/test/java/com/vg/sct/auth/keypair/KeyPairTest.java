@@ -60,9 +60,8 @@ public class KeyPairTest {
         KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("jwt/jwt.jks"), "scarf123".toCharArray());
         KeyPair keyPair = keyStoreKeyFactory.getKeyPair("jwt", "scarf123".toCharArray());
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
-        PrivateKey privateKey = keyPair.getPrivate();
-
-        RSAKey raskey = new RSAKey.Builder(publicKey).privateKey(privateKey).build();
-        NjJwtUtils.verifyTokenByRSA(token, raskey);
+//        PrivateKey privateKey = keyPair.getPrivate();
+//        RSAKey raskey = new RSAKey.Builder(publicKey).build();
+        NjJwtUtils.verifyTokenByRSA(token, publicKey);
     }
 }
