@@ -99,8 +99,8 @@ hystrix:
   command:
     default:
       execution:
-        timeout: true #是否开启超时熔断
         isolation:
           thread:
             timeoutInMilliseconds: 10000 #断路器超时时间，默认1000ms
-          strategy: SEMAPHORE
+          strategy: THREAD
+#          strategy: SEMAPHORE

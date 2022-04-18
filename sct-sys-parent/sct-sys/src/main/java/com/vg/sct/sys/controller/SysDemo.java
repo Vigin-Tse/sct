@@ -4,11 +4,13 @@ import com.vg.sct.common.support.http.HttpResponse;
 import com.vg.sct.common.support.http.HttpResponseConvert;
 import com.vg.sct.feign.auth.api.OauthFeignApi;
 import com.vg.sct.feign.product.api.ProductFeignApi;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @author: xieweij
@@ -16,6 +18,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/demo")
+@Slf4j
 public class SysDemo {
 
     @Resource
@@ -32,6 +35,14 @@ public class SysDemo {
 
     @GetMapping("/plb")
     public HttpResponse pDemo(){
-        return productFeignApi.demo();
+        long start = System.currentTimeMillis();
+        HttpResponse resp = null;
+        try {
+            resp = productFeignApi.demo();
+        }catch (Exception e){
+
+        }
+        log.info("/demo/plb接口耗时：{}s", (System.currentTimeMillis() - start) / 1000);
+        return resp;
     }
 }

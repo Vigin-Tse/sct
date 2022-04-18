@@ -9,7 +9,6 @@
     <packaging>pom</packaging>
     <description>Demo project for Spring Boot</description>
 
-
     <modules>
         <module>sct-common</module>
         <module>sct-eureka</module>
@@ -20,7 +19,6 @@
         <module>sct-account-parent</module>
         <module>sct-job-parent</module>
         <module>sct-gateway</module>
-
     </modules>
 
     <parent>
@@ -36,6 +34,7 @@
         <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
         <spring-cloud.alibaba.version>2.2.6.RC1</spring-cloud.alibaba.version>
         <seata-spring-boot-starter>1.4.2</seata-spring-boot-starter>
+        <druid-spring-boot-starter>1.1.9</druid-spring-boot-starter>
     </properties>
 
     <!-- dependencies部分是公用的依赖，可被直接继承 -->

@@ -61,7 +61,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.9</version>
+            <version>${druid-spring-boot-starter}</version>
         </dependency>
 
     </dependencies>
