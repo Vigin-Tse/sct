@@ -1,7 +1,7 @@
 sct:
-  redis:
-    host: 47.106.105.217
-    port: 9004
+  db:
+    address: 192.168.56.104:3306/scart_account_sit
+    username: root
     password: Vigin123
 
 spring:
