@@ -31,9 +31,12 @@ public class GlobalExceptionHandler {
         return HttpResponseConvert.failure(e.getMessage());
     }
 
-    @ExceptionHandler(Exception.class)
-    public HttpResponse exceptionHandler(Exception e){
-        log.error("异常信息：", e);
-        return HttpResponseConvert.failure(e.getMessage());
-    }
+    /**
+     * Exception全局异常捕捉会影响seata全局异常回滚
+     */
+//    @ExceptionHandler(Exception.class)
+//    public HttpResponse exceptionHandler(Exception e){
+//        log.error("异常信息：", e);
+//        return HttpResponseConvert.failure(e.getMessage());
+//    }
 }

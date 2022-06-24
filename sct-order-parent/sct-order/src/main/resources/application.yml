@@ -20,7 +20,7 @@ spring:
     url: jdbc:mysql://${sct.db.address}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Hongkong&usessl=true&useOldAliasMetadataBehavior=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    druid: #如果使用 druid-springboot-starter 可在配置文件直接配置druid相关属性
+    druid: #如果使用 druid-springboot-starter 可在配置文件直接配置druid相关属性即可
       initial-size: 1 #初始化连接大小
       max-active: 10 #最大连接数
       min-idle: 1   #最小空闲连接数
@@ -55,6 +55,24 @@ spring:
         max-idle: 8 #最大空闲数
         min-idle: 3 #初始化最小数
 
+##是否开启熔断器
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          #如果enabled设置为false，则请求超时交给ribbon控制,为true,则超时作为熔断根据
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 15000 #断路器超时时间，默认1000ms
+#          strategy: THREAD
+          strategy: SEMAPHORE
+
 #如何配置好Hystrix和Ribbon的超时时间呢？
 #Feign的请求：其实是Hystrix+Ribbon。Hystrix在最外层，然后再到Ribbon，最后里面的是http请求。
 #所以说。Hystrix的熔断时间必须大于Ribbon的 ( ConnectTimeout + ReadTimeout )。
@@ -63,10 +81,21 @@ spring:
 ribbon:
   ConnectTimeout: 5000 #请求连接超时时间(ms)
   ReadTimeout: 5000 #请求处理的超时时间(ms)
-  OkToRetryOnAllOperations: true #true:对所有请求(包括GET)都进行重试
-  MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
+  OkToRetryOnAllOperations: false #true:对所有请求(包括GET)都进行重试
+  MaxAutoRetriesNextServer: 0 # 切换实例的重试次数
   MaxAutoRetries: 0 # 对当前实例的重试次数
   #请求次数 = MaxAutoRetries + MaxAutoRetriesNextServer + (MaxAutoRetries * MaxAutoRetiresNextServer) + 1
+
+#服务名称
+#sct-account:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule  #指定使用Nacos提供的负载均衡策略（优先调用同一集群的实例，基于随机&权重）
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #配置规则 随机
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #配置规则 轮询
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RetryRule #配置规则 重试
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule #配置规则 响应时间权重
+#NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule #配置规则 最空闲连接策略
 
 #eureka:
 #  client:
@@ -78,6 +107,7 @@ logging:
   level:
     root: info
     org.hibernate.type.descriptor.sql.BasicBinder: trace
+    com.springcloud.study.service.ProviderClientService: debug
 
 sct:
   db:
@@ -91,11 +121,12 @@ sct:
 
 #====================================Seata Config===============================================
 seata:
-  enabled: true
+  enabled: true #是否开启自动装配
+  enableAutoDataSourceProxy: true #是否自动代理数据源，默认开启，spring-spring-seata有这个配置就不用另外写数据源代理配置类
   application-id: sct-order-seata
   tx-service-group: sct_tx_group # 事务群组（可以每个应用独立取名，也可以使用相同的名字）
   client:
-    rm-report-success-enable: true
+#    rm-report-success-enable: true
     rm-table-meta-check-enable: false # 自动刷新缓存中的表结构（默认false）
     rm-report-retry-count: 5 # 一阶段结果上报TC重试次数（默认5）
     rm-async-commit-buffer-limit: 10000 # 异步提交缓存队列长度（默认10000）

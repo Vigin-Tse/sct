@@ -2,11 +2,14 @@ package com.vg.sct.order.controller;
 
 import com.vg.sct.common.support.http.HttpResponse;
 import com.vg.sct.common.support.http.HttpResponseConvert;
+import com.vg.sct.feign.account.api.AccSeataAccountFeignApi;
 import com.vg.sct.order.service.BizSeataOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author: xieweij
@@ -18,6 +21,9 @@ public class BizSeataOrderController {
 
     @Autowired
     private BizSeataOrderService orderService;
+
+    @Resource
+    private AccSeataAccountFeignApi accSeataAccountFeignApi;
 
     /**
      * 分布式不加事务测试
@@ -47,5 +53,10 @@ public class BizSeataOrderController {
     public HttpResponse localtransacation(){
         this.orderService.localTransaction();
         return HttpResponseConvert.success(null);
+    }
+
+    @GetMapping("/accTesting")
+    public HttpResponse accTesting(){
+        return this.accSeataAccountFeignApi.test();
     }
 }

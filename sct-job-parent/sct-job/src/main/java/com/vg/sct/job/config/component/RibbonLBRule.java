@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 public class RibbonLBRule {
 
     /**
+     * !!! 这个有问题 详细见 sct-odrer seata 测试过程中发现
+     * https://developer.aliyun.com/article/925196#:~:text=%E5%9B%A0%E4%B8%BAOpenFe,%E9%87%8D%E8%BF%9B%E8%A1%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%EF%BC%9A
+     *
      * @bean 为全局（feignClient1、feignClient2...）配置,对所有 feignClient 的负载策略生效。
      * 如只针对某个 feignClient 只需在配置文件（yml）配置即可：
      * eureka-client-name:

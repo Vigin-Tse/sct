@@ -1,6 +1,7 @@
 sct:
   db:
-    address: 192.168.56.104:3306/scart_account_sit
+    address: 192.168.56.104:3306/scart_order_sit
+#    address: 47.106.105.217:13306/scart_order_sit
     username: root
     password: Vigin123
   redis:

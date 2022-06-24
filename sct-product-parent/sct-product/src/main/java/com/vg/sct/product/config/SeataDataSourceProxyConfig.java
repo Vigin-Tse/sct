@@ -7,12 +7,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+import javax.sql.DataSource;
+
 /**
  * seata配置代理数据源
+ *
+ * spring-boot-seata 在配置文件（.yml）中默认开启自动配置数据源
+ *
  * @author: xieweij
  * @time: 2021/7/15 11:41
  */
-@Configuration
+//@Configuration
 public class SeataDataSourceProxyConfig {
 
     @Bean
@@ -21,9 +26,9 @@ public class SeataDataSourceProxyConfig {
         return new DruidDataSource();
     }
 
-    @Primary
-    @Bean
-    public DataSourceProxy dataSource(DruidDataSource druidDataSource) {
+    @Primary //有多个相同类型的bean时，使用@Primary来赋予bean更高的优先级。
+    @Bean("dataSource")
+    public DataSource dataSource(DruidDataSource druidDataSource) {
         return new DataSourceProxy(druidDataSource);
     }
 

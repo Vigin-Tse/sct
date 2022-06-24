@@ -25,4 +25,9 @@ public class AccSeataAccountController {
         this.accSeataAccountService.debit(userId, payMoney);
         return HttpResponseConvert.success(null);
     }
+
+    @GetMapping("/test")
+    public HttpResponse test(){
+        return HttpResponseConvert.success("testing");
+    }
 }

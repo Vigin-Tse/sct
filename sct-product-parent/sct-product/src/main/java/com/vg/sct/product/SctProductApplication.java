@@ -19,7 +19,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EntityScan("com.vg.sct")
 @EnableFeignClients(basePackages = "com.vg.sct")
 @EnableJpaAuditing
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.vg.sct")
 public class SctProductApplication {
 
     public static void main(String[] args) {

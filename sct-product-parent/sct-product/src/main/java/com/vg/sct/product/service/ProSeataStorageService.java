@@ -13,4 +13,6 @@ public interface ProSeataStorageService {
      * @param count 扣减（出库）数量
      */
     void deduct(Integer productId, Integer count);
+
+
 }

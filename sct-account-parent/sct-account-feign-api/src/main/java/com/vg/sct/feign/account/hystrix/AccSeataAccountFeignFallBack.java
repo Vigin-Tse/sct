@@ -10,12 +10,17 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author: xieweij
  * @time: 2021/6/24 14:05
  */
-@Component
+//@Component
 public class AccSeataAccountFeignFallBack implements AccSeataAccountFeignApi {
 
 
     @Override
     public HttpResponse debit(Integer userId, Double payMoney) {
+        return HttpResponseConvert.failure("服务调用失败" );
+    }
+
+    @Override
+    public HttpResponse test() {
         return null;
     }
 }

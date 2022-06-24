@@ -35,6 +35,7 @@ public class AccSeataAccountServiceImpl implements AccSeataAccountService {
         acc.setTotal(acc.getTotal() - payMoney);
 
         this.accSeataAccountRepository.save(acc);
+//        int i = 1/0;
         log.info("退出账户服务");
     }
 }

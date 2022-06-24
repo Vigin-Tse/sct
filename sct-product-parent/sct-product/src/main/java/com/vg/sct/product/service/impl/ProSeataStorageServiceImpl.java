@@ -4,6 +4,7 @@ import com.vg.sct.common.support.exception.BusinessException;
 import com.vg.sct.product.domain.model.ProSeataStorageModel;
 import com.vg.sct.product.repository.ProSeataStorageRepository;
 import com.vg.sct.product.service.ProSeataStorageService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,14 +23,10 @@ public class ProSeataStorageServiceImpl implements ProSeataStorageService {
     @Autowired
     private ProSeataStorageRepository storageRepository;
 
+    @GlobalTransactional(name = "product-service-deduct", rollbackFor = Exception.class)
     @Override
     public void deduct(Integer productId, Integer count) {
         log.info("进入库存服务");
-        try {
-            Thread.sleep(5000);
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
 
         List<ProSeataStorageModel> storages = this.storageRepository.findByProductId(productId);
         if (CollectionUtils.isEmpty(storages)){
@@ -39,6 +36,9 @@ public class ProSeataStorageServiceImpl implements ProSeataStorageService {
         ProSeataStorageModel storage = storages.get(0);
         storage.setResidue(storage.getResidue() - count);
         this.storageRepository.save(storage);
+
+        //模拟库存扣减发生异常
+        int i = 1/0;
         log.info("退出库存服务");
     }
 }
