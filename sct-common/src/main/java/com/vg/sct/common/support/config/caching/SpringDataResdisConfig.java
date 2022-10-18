@@ -1,5 +1,10 @@
 package com.vg.sct.common.support.config.caching;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
@@ -8,8 +13,9 @@ import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 /**
  * @description: redis相关配置
@@ -57,13 +63,48 @@ public class SpringDataResdisConfig {
     public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate redisTemplate = new RedisTemplate();
 
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(
+                Object.class);
+        //json转对象类，不设置默认的会将json转成hashmap
+        ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json().build();
+        objectMapper.disable(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES);
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        objectMapper.activateDefaultTyping(objectMapper.getPolymorphicTypeValidator(), ObjectMapper.DefaultTyping.NON_FINAL);
+//        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
+
         redisTemplate.setConnectionFactory(redisConnectionFactory);
-        redisTemplate.setKeySerializer(new StringRedisSerializer());//设置redis key的序列化方式
-//        redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());// Object --> 序列化 --> 二进制流 --> redis-server存储
-        redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+        redisTemplate.setKeySerializer(new StringRedisSerializer()); //key 采用的String 的序列化方式
+        redisTemplate.setHashKeySerializer(new StringRedisSerializer());//hashde key 也采用String的序列化方式
+        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);//hash 的 value序列化方式采用jackson
+        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);//value 序列化方式采用jackson
+        redisTemplate.afterPropertiesSet();
+
         return redisTemplate;
 
     }
+
+
+    /**
+     *  设置value的序列化器
+     *  使用Jackson 2，将对象序列化为JSON
+     * @return
+     */
+//    @Bean
+//    public Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer() {
+//        final Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(
+//                Object.class);
+//        //json转对象类，不设置默认的会将json转成hashmap
+//        final ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json().build();
+//        objectMapper.disable(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES);
+//        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+//        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+//        objectMapper.activateDefaultTyping(objectMapper.getPolymorphicTypeValidator(), ObjectMapper.DefaultTyping.NON_FINAL);
+////        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+//        jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
+//        return jackson2JsonRedisSerializer;
+//    }
 
     /**
      * 配置spring cache注解功能
