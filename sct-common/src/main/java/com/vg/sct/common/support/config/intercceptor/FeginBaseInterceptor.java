@@ -21,6 +21,7 @@ public class FeginBaseInterceptor implements RequestInterceptor {
     public void apply(RequestTemplate requestTemplate) {
 
         //当Feign开启Hystrix支持时，attributes==null。原因在于，Hystrix的默认隔离策略是THREAD（线程隔离），可修改隔离方案为SEMAPHORE（信号量隔离），不过该方案官方不推荐。
+        //https://www.jianshu.com/p/f30892335057
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (attributes != null){
             HttpServletRequest request = attributes.getRequest();
