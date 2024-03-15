@@ -18,7 +18,7 @@
     <properties>
         <hutool.version>5.3.7</hutool.version>
         <jjwt.vserion>0.9.1</jjwt.vserion>
-        <numbus-jose-jwt.version>8.16</numbus-jose-jwt.version>
+        <numbus-jose-jwt.version>9.37.2</numbus-jose-jwt.version>
         <persistence.vserion>2.2.3</persistence.vserion>
     </properties>
 
